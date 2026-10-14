@@ -10,7 +10,7 @@
   },
   "transform": [
     {
-      "lookup": "properties.NAME",
+      "lookup": "properties.STATE_NAME",
       "from": {
         "data": {"url": "../data/aus_states_pets.csv"},
         "key": "state",
@@ -27,7 +27,7 @@
       "scale": {"scheme": "blues"}
     },
     "tooltip": [
-      {"field": "properties.NAME", "type": "nominal", "title": "State/Territory"},
+      {"field": "properties.STATE_NAME", "type": "nominal", "title": "State/Territory"},
       {"field": "pet_density_pct", "type": "quantitative", "title": "Ownership Density (%)"},
       {"field": "total_pets_mil", "type": "quantitative", "title": "Total Pets (Millions)"}
     ]
