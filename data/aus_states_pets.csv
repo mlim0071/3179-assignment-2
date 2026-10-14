@@ -1,9 +1,0 @@
-state,state_code,pet_density_pct,total_pets_mil,avg_vet_cost_index
-New South Wales,NSW,72.0,10.2,112
-Victoria,VIC,74.0,9.5,108
-Queensland,QLD,76.0,7.8,98
-South Australia,SA,71.0,2.3,101
-Western Australia,WA,73.0,3.1,105
-Tasmania,TAS,75.0,0.8,95
-Northern Territory,NT,68.0,0.3,115
-Australian Capital Territory,ACT,70.0,0.5,110
