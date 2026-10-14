@@ -1,25 +1,37 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "State-Level Pet Ownership Density (%)"},
-  "width": 450,
-  "height": 300,
-  "projection": {"type": "mercator", "center": [133, -27], "scale": 650},
-  "data": {
-    "url": "../data/aus_states.topojson",
-    "format": {"type": "topojson", "feature": "states"}
+  "title": "Australian Pet Population & Density by State",
+  "width": 500,
+  "height": 350,
+  "projection": {
+    "type": "mercator",
+    "center": [133, -27],
+    "scale": 600
   },
-  "transform": [
-    {
-      "lookup": "properties.STATE_NAME",
-      "from": {
-        "data": {"url": "../data/aus_states_pets.csv"},
-        "key": "state",
-        "fields": ["pet_density_pct", "total_pets_mil", "avg_vet_cost_index"]
-      }
-    }
-  ],
-  "mark": {"type": "geoshape", "stroke": "#ffffff", "strokeWidth": 1},
+  "data": {
+    "url": "../data/aus_states_pets.csv"
+  },
+  "mark": {
+    "type": "circle",
+    "opacity": 0.8,
+    "stroke": "#222",
+    "strokeWidth": 0.5
+  },
   "encoding": {
+    "longitude": {
+      "field": "longitude",
+      "type": "quantitative"
+    },
+    "latitude": {
+      "field": "latitude",
+      "type": "quantitative"
+    },
+    "size": {
+      "field": "total_pets_mil",
+      "type": "quantitative",
+      "title": "Total Pets (Millions)",
+      "scale": {"range": [100, 1000]}
+    },
     "color": {
       "field": "pet_density_pct",
       "type": "quantitative",
@@ -27,9 +39,9 @@
       "scale": {"scheme": "blues"}
     },
     "tooltip": [
-      {"field": "properties.STATE_NAME", "type": "nominal", "title": "State/Territory"},
-      {"field": "pet_density_pct", "type": "quantitative", "title": "Ownership Density (%)"},
-      {"field": "total_pets_mil", "type": "quantitative", "title": "Total Pets (Millions)"}
+      {"field": "state", "type": "nominal", "title": "State/Territory"},
+      {"field": "pet_density_pct", "type": "quantitative", "title": "Pet Density (%)"},
+      {"field": "total_pets_mil", "type": "quantitative", "title": "Total Pets (M)"}
     ]
   }
 }
