@@ -1,0 +1,41 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Multi-line chart tracking pet population growth across survey years.",
+  "title": {
+    "text": "Pet Population Growth Over Time (2016–2025)",
+    "subtitle": "Tracking absolute animal population growth across survey waves (Animal Medicines Australia)"
+  },
+  "data": {
+    "url": "../data/pet_trends.csv"
+  },
+  "mark": {"type": "line", "point": true, "strokeWidth": 3},
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": "Survey Year"
+    },
+    "y": {
+      "field": "population_millions",
+      "type": "quantitative",
+      "title": "Total Population (Millions)"
+    },
+    "color": {
+      "field": "species",
+      "type": "nominal",
+      "title": "Species",
+      "scale": {
+        "domain": ["Dogs", "Cats", "Other"],
+        "range": ["#3182ce", "#e53e3e", "#d69e2e"]
+      }
+    },
+    "tooltip": [
+      {"field": "year", "type": "ordinal", "title": "Year"},
+      {"field": "species", "type": "nominal", "title": "Species"},
+      {"field": "population_millions", "type": "quantitative", "title": "Population (M)"},
+      {"field": "household_penetration_pct", "type": "quantitative", "title": "Penetration Rate (%)"}
+    ]
+  },
+  "width": 450,
+  "height": 300
+}

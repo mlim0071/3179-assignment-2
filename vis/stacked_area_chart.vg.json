@@ -1,0 +1,40 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Stacked area chart illustrating national pet expenditure breakdown over time.",
+  "title": {
+    "text": "National Pet Care Expenditure Breakdown ($ Billions)",
+    "subtitle": "Highlighting rising macro-pressures and care costs ('cost pressures bite')"
+  },
+  "data": {
+    "url": "../data/pet_trends.csv"
+  },
+  "mark": "area",
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": "Survey Year"
+    },
+    "y": {
+      "aggregate": "sum",
+      "field": "spend_amount_billion",
+      "type": "quantitative",
+      "title": "Expenditure ($ Billions)"
+    },
+    "color": {
+      "field": "category_spending",
+      "type": "nominal",
+      "title": "Spending Category",
+      "scale": {
+        "scheme": "tableau10"
+      }
+    },
+    "tooltip": [
+      {"field": "year", "type": "ordinal", "title": "Year"},
+      {"field": "category_spending", "type": "nominal", "title": "Category"},
+      {"field": "spend_amount_billion", "type": "quantitative", "title": "Spend ($B)"}
+    ]
+  },
+  "width": 450,
+  "height": 300
+}
