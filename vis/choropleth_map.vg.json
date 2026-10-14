@@ -1,0 +1,36 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Map 1: Choropleth / State-level pet ownership density across Australia.",
+  "title": {
+    "text": "Map 1: State-Level Pet Ownership Density (%)",
+    "subtitle": "Percentage of households owning pets by Australian State/Territory"
+  },
+  "width": 450,
+  "height": 300,
+  "projection": {"type": "mercator", "center": [133, -27], "scale": 550},
+  "data": {
+    "url": "../data/australia_states_pets.csv"
+  },
+  "mark": {"type": "circle", "opacity": 0.8, "stroke": "#1a365d", "strokeWidth": 1},
+  "encoding": {
+    "longitude": {"field": "lon", "type": "quantitative"},
+    "latitude": {"field": "lat", "type": "quantitative"},
+    "size": {
+      "field": "pet_density_pct",
+      "type": "quantitative",
+      "scale": {"range": [100, 800]},
+      "legend": {"title": "Density (%)"}
+    },
+    "color": {
+      "field": "pet_density_pct",
+      "type": "quantitative",
+      "scale": {"scheme": "blues"},
+      "legend": {"title": "Penetration (%)"}
+    },
+    "tooltip": [
+      {"field": "state", "type": "nominal", "title": "State/Territory"},
+      {"field": "pet_density_pct", "type": "quantitative", "title": "Household Density (%)"},
+      {"field": "total_pets_thousands", "type": "quantitative", "title": "Total Pets ('000)"}
+    ]
+  }
+}
