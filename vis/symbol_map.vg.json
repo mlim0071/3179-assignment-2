@@ -1,0 +1,35 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "State-Level Pet Ownership Density (%)"},
+  "width": 450,
+  "height": 300,
+  "projection": {"type": "mercator", "center": [133, -27], "scale": 650},
+  "data": {
+    "url": "../data/aus_states.topojson",
+    "format": {"type": "topojson", "feature": "states"}
+  },
+  "transform": [
+    {
+      "lookup": "properties.NAME",
+      "from": {
+        "data": {"url": "../data/aus_states_pets.csv"},
+        "key": "state",
+        "fields": ["pet_density_pct", "total_pets_mil", "avg_vet_cost_index"]
+      }
+    }
+  ],
+  "mark": {"type": "geoshape", "stroke": "#ffffff", "strokeWidth": 1},
+  "encoding": {
+    "color": {
+      "field": "pet_density_pct",
+      "type": "quantitative",
+      "title": "Density (%)",
+      "scale": {"scheme": "blues"}
+    },
+    "tooltip": [
+      {"field": "properties.NAME", "type": "nominal", "title": "State/Territory"},
+      {"field": "pet_density_pct", "type": "quantitative", "title": "Ownership Density (%)"},
+      {"field": "total_pets_mil", "type": "quantitative", "title": "Total Pets (Millions)"}
+    ]
+  }
+}

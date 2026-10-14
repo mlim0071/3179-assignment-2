@@ -6,7 +6,7 @@ vegaEmbed("#donut_chart", spec_donut).catch(console.error);
 var spec_line = "vis/line_chart.vg.json";
 vegaEmbed("#line_chart", spec_line).catch(console.error);
 
-var spec_area = "vis/area_chart.vg.json";
+var spec_area = "vis/stacked_area_chart.vg.json";
 vegaEmbed("#area_chart", spec_area).catch(console.error);
 
 // Section 3: Household Preferences Charts

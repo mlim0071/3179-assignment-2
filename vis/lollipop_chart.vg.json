@@ -1,0 +1,33 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Horizontal Lollipop Chart showing household penetration rate by species.",
+  "title": {
+    "text": "Household Pet Penetration Rates (%)",
+    "subtitle": "Percentage of Australian households owning each pet species (Animal Medicines Australia)"
+  },
+  "data": {
+    "url": "../data/species_preferences.csv"
+  },
+  "layer": [
+    {
+      "mark": {"type": "rule", "color": "#cbd5e1", "strokeWidth": 2},
+      "encoding": {
+        "y": {"field": "species", "type": "nominal", "sort": "-x", "title": "Pet Type"},
+        "x": {"field": "penetration_rate", "type": "quantitative", "title": "Household Penetration (%)"}
+      }
+    },
+    {
+      "mark": {"type": "point", "size": 120, "filled": true, "color": "#2b6cb0"},
+      "encoding": {
+        "y": {"field": "species", "type": "nominal", "sort": "-x"},
+        "x": {"field": "penetration_rate", "type": "quantitative"},
+        "tooltip": [
+          {"field": "species", "type": "nominal", "title": "Species"},
+          {"field": "penetration_rate", "type": "quantitative", "title": "Penetration Rate (%)"}
+        ]
+      }
+    }
+  ],
+  "width": 450,
+  "height": 280
+}
