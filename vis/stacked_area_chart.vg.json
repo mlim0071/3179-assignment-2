@@ -6,7 +6,7 @@
     "subtitle": "Highlighting rising macro-pressures and care costs"
   },
   "data": {
-    "url": "../data/pet_trends.csv"
+    "url": "data/pet_trends.csv"
   },
   "mark": "area",
   "encoding": {

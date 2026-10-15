@@ -6,7 +6,7 @@
     "subtitle": "Nearly 73% of households own at least one pet"
   },
   "data": {
-    "url": "../data/pet_ownership_share.csv"
+    "url": "data/pet_ownership_share.csv"
   },
   "layer": [
     {

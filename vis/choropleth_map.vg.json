@@ -141,7 +141,7 @@
     }
   },
   "data": {
-    "url": "../data/australia_states.geojson",
+    "url": "data/australia_states.geojson",
     "format": {
       "type": "json",
       "property": "features"
@@ -152,7 +152,7 @@
       "lookup": "properties.STATE_NAME",
       "from": {
         "data": {
-          "url": "../data/australia_states_pets.csv"
+          "url": "data/australia_states_pets.csv"
         },
         "key": "state",
         "fields": [

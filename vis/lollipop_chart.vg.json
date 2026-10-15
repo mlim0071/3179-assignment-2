@@ -6,7 +6,7 @@
     "subtitle": "Percentage of Australian households owning each pet species"
   },
   "data": {
-    "url": "../data/species_preferences.csv"
+    "url": "data/species_preferences.csv"
   },
   "layer": [
     {

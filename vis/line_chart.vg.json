@@ -6,7 +6,7 @@
     "subtitle": "Tracking absolute animal population growth across survey waves"
   },
   "data": {
-    "url": "../data/pet_trends.csv"
+    "url": "data/pet_trends.csv"
   },
   "mark": {"type": "line", "point": true, "strokeWidth": 3},
   "encoding": {

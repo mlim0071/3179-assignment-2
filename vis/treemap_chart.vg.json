@@ -19,7 +19,7 @@
   "data": [
     {
       "name": "table",
-      "url": "../data/species_preferences.csv",
+      "url": "data/species_preferences.csv",
       "format": {
         "type": "csv",
         "parse": "auto"

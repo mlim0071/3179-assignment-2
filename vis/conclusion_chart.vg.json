@@ -17,7 +17,7 @@
   "height": 280,
   "padding": 5,
   "data": {
-    "url": "../data/conclusion_slope.csv"
+    "url": "data/conclusion_slope.csv"
   },
   "transform": [
     {
