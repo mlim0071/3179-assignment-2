@@ -16,8 +16,8 @@ vegaEmbed("#lollipop_chart", spec_lollipop).catch(console.error);
 var spec_grouped = "vis/grouped_bar.vg.json";
 vegaEmbed("#grouped_bar", spec_grouped).catch(console.error);
 
-//var spec_treemap = "vis/treemap_chart.vg.json";
-//vegaEmbed("#treemap_chart", spec_treemap).catch(console.error);
+var spec_treemap = "vis/treemap_chart.vg.json";
+vegaEmbed("#treemap_chart", spec_treemap).catch(console.error);
 
 // Section 4: Maps & Demographics (3 Mandatory Map Idioms)
 var spec_map1 = "vis/choropleth_map.vg.json";
@@ -32,6 +32,6 @@ vegaEmbed("#map1", spec_map1).catch(console.error);
 //var spec_heatmap = "vis/demographic_heatmap.vg.json";
 //vegaEmbed("#demographic_heatmap", spec_heatmap).catch(console.error);
 
-// Section 5: Conclusion Chart
-//var spec_conclusion = "vis/conclusion_chart.vg.json";
-//vegaEmbed("#conclusion_chart", spec_conclusion).catch(console.error);
+ //Section 5: Conclusion Chart
+var spec_conclusion = "vis/conclusion_chart.vg.json";
+vegaEmbed("#conclusion_chart", spec_conclusion).catch(console.error);

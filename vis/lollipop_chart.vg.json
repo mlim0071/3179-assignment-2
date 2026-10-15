@@ -3,7 +3,7 @@
   "description": "Horizontal Lollipop Chart showing household penetration rate by species.",
   "title": {
     "text": "Household Pet Penetration Rates (%)",
-    "subtitle": "Percentage of Australian households owning each pet species (Animal Medicines Australia)"
+    "subtitle": "Percentage of Australian households owning each pet species"
   },
   "data": {
     "url": "../data/species_preferences.csv"

@@ -3,7 +3,7 @@
   "description": "Grouped Bar Chart comparing animal population vs owner households.",
   "title": {
     "text": "Total Pet Population vs. Owning Households ('000s)",
-    "subtitle": "Comparing absolute numbers across species (Animal Medicines Australia)"
+    "subtitle": "Comparing absolute numbers across species"
   },
   "data": {
     "url": "../data/species_preferences.csv"

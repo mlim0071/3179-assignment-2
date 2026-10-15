@@ -1,36 +1,168 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Map 1: Choropleth / State-level pet ownership density across Australia.",
+  "description": "Choropleth map of the share of households with a pet, by state and territory.",
   "title": {
-    "text": "Map 1: State-Level Pet Ownership Density (%)",
-    "subtitle": "Percentage of households owning pets by Australian State/Territory"
+    "text": "Share of Households with a pet by state",
+    "subtitle": "Darker blue represents a higher share of households owning a pet",
+    "anchor": "start",
+    "fontSize": 16,
+    "subtitleFontSize": 12
   },
-  "width": 450,
-  "height": 300,
-  "projection": {"type": "mercator", "center": [133, -27], "scale": 550},
+  "width": 620,
+  "height": 480,
+  "projection": {
+    "type": "mercator"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#ffffff",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "color": {
+          "field": "pet_density_pct",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "blues",
+            "domain": [
+              66,
+              78
+            ]
+          },
+          "legend": {
+            "title": [
+              "Households",
+              "with a pet (%)"
+            ],
+            "orient": "right",
+            "gradientLength": 160,
+            "values": [
+              66,
+              70,
+              74,
+              78
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "properties.STATE_NAME",
+            "type": "nominal",
+            "title": "State/Territory"
+          },
+          {
+            "field": "pet_density_pct",
+            "type": "quantitative",
+            "title": "Households with a pet (%)"
+          },
+          {
+            "field": "total_pets_thousands",
+            "type": "quantitative",
+            "title": "Total pets ('000)",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "lon": 149.13,
+            "lat": -35.28,
+            "lon2": 152.4,
+            "lat2": -35.95
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "stroke": "#475569",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "longitude2": {
+          "field": "lon2"
+        },
+        "latitude2": {
+          "field": "lat2"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "calculate": "datum.state_code + ' ' + format(datum.pet_density_pct, '.1f') + '%'",
+          "as": "label"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "baseline": "middle"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "label_lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "label_lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label",
+          "type": "nominal"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.pet_density_pct > 73 && datum.state_code !== 'TAS'",
+            "value": "#ffffff"
+          },
+          "value": "#1e293b"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  },
   "data": {
-    "url": "../data/australia_states_pets.csv"
+    "url": "../data/australia_states.geojson",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
   },
-  "mark": {"type": "circle", "opacity": 0.8, "stroke": "#1a365d", "strokeWidth": 1},
-  "encoding": {
-    "longitude": {"field": "lon", "type": "quantitative"},
-    "latitude": {"field": "lat", "type": "quantitative"},
-    "size": {
-      "field": "pet_density_pct",
-      "type": "quantitative",
-      "scale": {"range": [100, 800]},
-      "legend": {"title": "Density (%)"}
-    },
-    "color": {
-      "field": "pet_density_pct",
-      "type": "quantitative",
-      "scale": {"scheme": "blues"},
-      "legend": {"title": "Penetration (%)"}
-    },
-    "tooltip": [
-      {"field": "state", "type": "nominal", "title": "State/Territory"},
-      {"field": "pet_density_pct", "type": "quantitative", "title": "Household Density (%)"},
-      {"field": "total_pets_thousands", "type": "quantitative", "title": "Total Pets ('000)"}
-    ]
-  }
+  "transform": [
+    {
+      "lookup": "properties.STATE_NAME",
+      "from": {
+        "data": {
+          "url": "../data/australia_states_pets.csv"
+        },
+        "key": "state",
+        "fields": [
+          "state_code",
+          "pet_density_pct",
+          "total_pets_thousands",
+          "label_lon",
+          "label_lat"
+        ]
+      }
+    }
+  ]
 }

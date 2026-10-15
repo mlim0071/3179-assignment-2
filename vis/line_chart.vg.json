@@ -3,7 +3,7 @@
   "description": "Multi-line chart tracking pet population growth across survey years.",
   "title": {
     "text": "Pet Population Growth Over Time (2016–2025)",
-    "subtitle": "Tracking absolute animal population growth across survey waves (Animal Medicines Australia)"
+    "subtitle": "Tracking absolute animal population growth across survey waves"
   },
   "data": {
     "url": "../data/pet_trends.csv"

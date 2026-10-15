@@ -3,7 +3,7 @@
   "description": "Donut chart showing Australian household pet ownership penetration.",
   "title": {
     "text": "Australian Pet Ownership Share",
-    "subtitle": "Nearly 73% of households own at least one pet (Animal Medicines Australia)"
+    "subtitle": "Nearly 73% of households own at least one pet"
   },
   "data": {
     "url": "../data/pet_ownership_share.csv"

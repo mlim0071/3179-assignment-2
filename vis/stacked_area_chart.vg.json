@@ -3,7 +3,7 @@
   "description": "Stacked area chart illustrating national pet expenditure breakdown over time.",
   "title": {
     "text": "National Pet Care Expenditure Breakdown ($ Billions)",
-    "subtitle": "Highlighting rising macro-pressures and care costs ('cost pressures bite')"
+    "subtitle": "Highlighting rising macro-pressures and care costs"
   },
   "data": {
     "url": "../data/pet_trends.csv"

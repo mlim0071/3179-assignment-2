@@ -1,0 +1,203 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Slope graph comparing pet ownership measures and cost pressure between 2022 and 2025.",
+  "title": {
+    "text": "More Pets, More Pressure: What Changed Between 2022 and 2025",
+    "subtitle": [
+      "Each line connects the 2022 and 2025 survey results.",
+      "Blue lines: % of all households, Red line: % of people wanting another pet",
+      "who say ongoing cost is the main barrier."
+    ],
+    "anchor": "start",
+    "fontSize": 16,
+    "subtitleFontSize": 12,
+    "subtitleColor": "#475569"
+  },
+  "width": 650,
+  "height": 280,
+  "padding": 5,
+  "data": {
+    "url": "../data/conclusion_slope.csv"
+  },
+  "transform": [
+    {
+      "calculate": "datum.year == 2025 ? datum.value : -datum.value",
+      "as": "signed"
+    },
+    {
+      "joinaggregate": [
+        {
+          "op": "sum",
+          "field": "signed",
+          "as": "change"
+        }
+      ],
+      "groupby": [
+        "measure"
+      ]
+    },
+    {
+      "calculate": "(datum.change > 0 ? '+' : '') + datum.change + ' pts'",
+      "as": "change_label"
+    },
+    {
+      "calculate": "datum.measure + '  ' + datum.value + '%'",
+      "as": "label_left"
+    },
+    {
+      "calculate": "datum.value + '%  (' + datum.change_label + ')'",
+      "as": "label_right"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          2018.58,
+          2026.38
+        ],
+        "nice": false
+      },
+      "axis": {
+        "orient": "top",
+        "title": null,
+        "values": [
+          2022,
+          2025
+        ],
+        "format": "d",
+        "domain": false,
+        "ticks": false,
+        "grid": false,
+        "labelFontSize": 14,
+        "labelFontWeight": "bold",
+        "labelPadding": 8,
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "value",
+      "type": "quantitative",
+      "scale": {
+        "domain": [
+          12,
+          78
+        ]
+      },
+      "axis": null
+    },
+    "color": {
+      "field": "theme",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Pet ownership",
+          "Cost pressure"
+        ],
+        "range": [
+          "#2b6cb0",
+          "#c53030"
+        ]
+      },
+      "legend": {
+        "title": null,
+        "orient": "bottom",
+        "symbolType": "stroke",
+        "labelFontSize": 12
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "detail": {
+          "field": "measure",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 110,
+        "opacity": 1
+      },
+      "encoding": {
+        "tooltip": [
+          {
+            "field": "measure",
+            "type": "nominal",
+            "title": "Measure"
+          },
+          {
+            "field": "year",
+            "type": "ordinal",
+            "title": "Year"
+          },
+          {
+            "field": "value",
+            "type": "quantitative",
+            "title": "Share (%)"
+          },
+          {
+            "field": "change_label",
+            "type": "nominal",
+            "title": "Change 2022 to 2025"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2022"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -12,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "label_left",
+          "type": "nominal"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2025"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "label_right",
+          "type": "nominal"
+        }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}
