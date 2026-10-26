@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Cleveland dot plot showing absolute owning households across species.",
+  "title": {
+    "text": "Australian Households Owning Pets",
+    "subtitle": "Ranked by total owning households (millions)"
+  },
+  "data": {
+    "url": "data/species_preferences.csv"
+  },
+  "width": 450,
+  "height": 260,
+  "transform": [
+    {
+      "calculate": "datum.owning_households_thousands / 1000",
+      "as": "households_millions"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "species",
+      "type": "nominal",
+      "sort": {"field": "households_millions", "op": "max", "order": "descending"},
+      "title": "Pet Type",
+      "axis": {"grid": true}
+    },
+    "x": {
+      "field": "households_millions",
+      "type": "quantitative",
+      "title": "Owning Households (Millions)",
+      "scale": {"domain": [0, 6]},
+      "axis": {
+        "format": ".1f",
+        "labelExpr": "datum.value + 'M'"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 140,
+        "opacity": 0.95
+      },
+      "encoding": {
+        "color": {
+          "field": "group",
+          "type": "nominal",
+          "title": "Animal Class",
+          "scale": {
+            "domain": ["Mammals", "Aquatic", "Avian", "Reptiles"],
+            "range": ["#3182ce", "#2b6cb0", "#d69e2e", "#38a169"]
+          }
+        },
+        "tooltip": [
+          {"field": "species", "type": "nominal", "title": "Species"},
+          {"field": "group", "type": "nominal", "title": "Animal Class"},
+          {"field": "households_millions", "type": "quantitative", "title": "Owning Households (M)", "format": ".2f"},
+          {"field": "penetration_rate", "type": "quantitative", "title": "Household Penetration (%)"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": 10,
+        "fontSize": 11,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "signal": "format(datum.households_millions, '.2f') + 'M (' + datum.penetration_rate + '%)'"
+        },
+        "color": {"value": "#334155"}
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null}
+  }
+}

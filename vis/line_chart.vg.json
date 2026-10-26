@@ -1,41 +1,83 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Multi-line chart tracking pet population growth across survey years.",
+  "description": "Multi-line chart tracking household penetration trends across historical survey waves.",
   "title": {
-    "text": "Pet Population Growth Over Time (2016–2025)",
-    "subtitle": "Tracking absolute animal population growth across survey waves"
+    "text": "Household Pet Penetration Trends Over Time",
+    "subtitle": "Comparing overall pet ownership alongside dog and cat penetration rates (%)",
+    "anchor": "start",
+    "offset": 15
   },
   "data": {
     "url": "data/pet_trends.csv"
   },
-  "mark": {"type": "line", "point": true, "strokeWidth": 3},
+  "width": 450,
+  "height": 280,
   "encoding": {
     "x": {
       "field": "year",
-      "type": "ordinal",
-      "title": "Survey Year"
+      "type": "nominal",
+      "title": "Survey Year",
+      "axis": {"labelAngle": 0}
     },
     "y": {
-      "field": "population_millions",
+      "field": "pct",
       "type": "quantitative",
-      "title": "Total Population (Millions)"
-    },
-    "color": {
-      "field": "species",
-      "type": "nominal",
-      "title": "Species",
-      "scale": {
-        "domain": ["Dogs", "Cats", "Other"],
-        "range": ["#3182ce", "#e53e3e", "#d69e2e"]
+      "title": "Household Penetration (%)",
+      "scale": {"domain": [0, 100]},
+      "axis": {
+        "format": "d",
+        "labelExpr": "datum.value + '%'"
       }
     },
-    "tooltip": [
-      {"field": "year", "type": "ordinal", "title": "Year"},
-      {"field": "species", "type": "nominal", "title": "Species"},
-      {"field": "population_millions", "type": "quantitative", "title": "Population (M)"},
-      {"field": "household_penetration_pct", "type": "quantitative", "title": "Penetration Rate (%)"}
-    ]
+    "color": {
+      "field": "group",
+      "type": "nominal",
+      "title": "Category",
+      "scale": {
+        "domain": ["Any pet", "Dogs", "Cats"],
+        "range": ["#3182ce", "#1f4e78", "#d97706"]
+      }
+    }
   },
-  "width": 450,
-  "height": 300
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 60
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "bottom",
+        "dy": -10,
+        "fontSize": 11,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {
+          "field": "pct",
+          "type": "quantitative",
+          "format": ".0f"
+        },
+        "color": {"value": "#1e293b"},
+        "tooltip": [
+          {"field": "year", "type": "nominal", "title": "Year"},
+          {"field": "group", "type": "nominal", "title": "Category"},
+          {"field": "pct", "type": "quantitative", "title": "Penetration Rate (%)"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null}
+  }
 }

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Sorted vertical bar chart comparing total pet populations across species.",
+  "title": {
+    "text": "Total Pet Populations in Australia",
+    "subtitle": "Ranked from highest to lowest total animal count (millions)"
+  },
+  "data": {
+    "url": "data/species_preferences.csv"
+  },
+  "width": 450,
+  "height": 280,
+  "transform": [
+    {
+      "calculate": "datum.total_population_thousands / 1000",
+      "as": "population_millions"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "species",
+      "type": "nominal",
+      "sort": {"field": "population_millions", "op": "max", "order": "ascending"},
+      "title": "Pet Type",
+      "axis": {"labelAngle": 0}
+    },
+    "y": {
+      "field": "population_millions",
+      "type": "quantitative",
+      "title": "Total Population (Millions)",
+      "scale": {"domain": [0, 14]},
+      "axis": {
+        "format": ".1f",
+        "labelExpr": "datum.value + 'M'"
+      }
+    },
+    "color": {
+      "field": "group",
+      "type": "nominal",
+      "title": "Animal Class",
+      "scale": {
+        "domain": ["Mammals", "Aquatic", "Avian", "Reptiles"],
+        "range": ["#3182ce", "#1f4e78", "#d97706", "#8b5cf6"]
+      }
+    },
+    "tooltip": [
+      {"field": "species", "type": "nominal", "title": "Species"},
+      {"field": "group", "type": "nominal", "title": "Animal Class"},
+      {"field": "population_millions", "type": "quantitative", "title": "Total Population (M)", "format": ".2f"},
+      {"field": "penetration_rate", "type": "quantitative", "title": "Household Penetration (%)"}
+    ]
+  },
+  "mark": {
+    "type": "bar",
+    "cornerRadiusTop": 4
+  },
+  "config": {
+    "view": {"stroke": null}
+  }
+}

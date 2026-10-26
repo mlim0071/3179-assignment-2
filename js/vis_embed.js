@@ -13,11 +13,11 @@ vegaEmbed("#area_chart", spec_area).catch(console.error);
 var spec_lollipop = "vis/lollipop_chart.vg.json";
 vegaEmbed("#lollipop_chart", spec_lollipop).catch(console.error);
 
-var spec_grouped = "vis/grouped_bar.vg.json";
-vegaEmbed("#grouped_bar", spec_grouped).catch(console.error);
+var spec_dotplot = "vis/dotplot_households.vg.json";
+vegaEmbed("#dotplot_households", spec_dotplot).catch(console.error);
 
-var spec_treemap = "vis/treemap_chart.vg.json";
-vegaEmbed("#treemap_chart", spec_treemap).catch(console.error);
+var spec_hbar = "vis/vertical_bar_chart.vg.json";
+vegaEmbed("#vertical_bar", spec_hbar).catch(console.error);
 
 // Section 4: Maps & Demographics (3 Mandatory Map Idioms)
 var spec_map1 = "vis/choropleth_map.vg.json";

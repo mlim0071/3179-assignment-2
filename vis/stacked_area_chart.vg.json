@@ -1,40 +1,49 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Stacked area chart illustrating national pet expenditure breakdown over time.",
+  "description": "Normalized 100% stacked area chart tracking expenditure category shifts over time.",
   "title": {
-    "text": "National Pet Care Expenditure Breakdown ($ Billions)",
-    "subtitle": "Highlighting rising macro-pressures and care costs"
+    "text": "Shift in National Pet Expenditure Composition",
+    "subtitle": "Proportional breakdown of spending categories across survey waves (%)"
   },
   "data": {
     "url": "data/pet_trends.csv"
   },
-  "mark": "area",
+  "width": 450,
+  "height": 280,
   "encoding": {
     "x": {
       "field": "year",
-      "type": "ordinal",
-      "title": "Survey Year"
+      "type": "nominal",
+      "title": "Survey Year",
+      "axis": {"labelAngle": 0}
     },
     "y": {
-      "aggregate": "sum",
       "field": "spend_amount_billion",
       "type": "quantitative",
-      "title": "Expenditure ($ Billions)"
+      "stack": "normalize",
+      "title": "Percentage Share (%)",
+      "axis": {"format": "%"}
     },
     "color": {
       "field": "category_spending",
       "type": "nominal",
       "title": "Spending Category",
       "scale": {
-        "scheme": "tableau10"
+        "domain": ["Pet food", "Veterinary services", "Pet services/grooming", "Products/accessories", "Pet insurance"],
+        "range": ["#3182ce", "#1f4e78", "#d97706", "#8b5cf6", "#38a169"]
       }
     },
     "tooltip": [
-      {"field": "year", "type": "ordinal", "title": "Year"},
+      {"field": "year", "type": "nominal", "title": "Year"},
       {"field": "category_spending", "type": "nominal", "title": "Category"},
-      {"field": "spend_amount_billion", "type": "quantitative", "title": "Spend ($B)"}
+      {"field": "spend_amount_billion", "type": "quantitative", "title": "Amount ($B)", "format": "$.2f"}
     ]
   },
-  "width": 450,
-  "height": 300
+  "mark": {
+    "type": "area",
+    "opacity": 0.85
+  },
+  "config": {
+    "view": {"stroke": null}
+  }
 }

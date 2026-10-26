@@ -13,6 +13,35 @@
   "projection": {
     "type": "mercator"
   },
+  "data": {
+    "url": "data/australia_states.geojson",
+    "format": {
+      "type": "json",
+      "property": "features"
+    }
+  },
+  "transform": [
+    {
+      "lookup": "properties.STATE_NAME",
+      "from": {
+        "data": {
+          "url": "data/australia_states_pets.csv"
+        },
+        "key": "state",
+        "fields": [
+          "state_code",
+          "pet_density_pct",
+          "total_pets_thousands",
+          "label_lon",
+          "label_lat"
+        ]
+      }
+    },
+    {
+      "calculate": "datum.state_code + ' ' + format(datum.pet_density_pct, '.1f') + '%'",
+      "as": "label"
+    }
+  ],
   "layer": [
     {
       "mark": {
@@ -72,8 +101,8 @@
           {
             "lon": 149.13,
             "lat": -35.28,
-            "lon2": 152.4,
-            "lat2": -35.95
+            "lon2": 154.2,
+            "lat2": -36.0
           }
         ]
       },
@@ -100,12 +129,6 @@
       }
     },
     {
-      "transform": [
-        {
-          "calculate": "datum.state_code + ' ' + format(datum.pet_density_pct, '.1f') + '%'",
-          "as": "label"
-        }
-      ],
       "mark": {
         "type": "text",
         "fontSize": 11,
@@ -139,30 +162,5 @@
     "view": {
       "stroke": null
     }
-  },
-  "data": {
-    "url": "data/australia_states.geojson",
-    "format": {
-      "type": "json",
-      "property": "features"
-    }
-  },
-  "transform": [
-    {
-      "lookup": "properties.STATE_NAME",
-      "from": {
-        "data": {
-          "url": "data/australia_states_pets.csv"
-        },
-        "key": "state",
-        "fields": [
-          "state_code",
-          "pet_density_pct",
-          "total_pets_thousands",
-          "label_lon",
-          "label_lat"
-        ]
-      }
-    }
-  ]
+  }
 }
