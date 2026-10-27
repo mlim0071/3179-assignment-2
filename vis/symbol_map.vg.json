@@ -18,7 +18,7 @@
       "mark": {"type": "geoshape", "fill": "#e2e8f0", "stroke": "#ffffff", "strokeWidth": 0.8}
     },
     {
-      "description": "Circles sized by animals received",
+      "description": "Triangles sized by animals received",
       "data": {
         "url": "data/animals_received.csv",
         "format": {
@@ -32,15 +32,7 @@
           }
         }
       },
-      "mark": {
-        "type": "point",
-        "shape": "triangle-up",
-        "filled": true,
-        "color": "#d55e00",
-        "opacity": 0.92,
-        "stroke": "#ffffff",
-        "strokeWidth": 1.5
-      },
+      "mark": {"type": "point", "shape": "triangle-up", "filled": true, "color": "#d55e00", "opacity": 0.92, "stroke": "#ffffff", "strokeWidth": 1.5},
       "encoding": {
         "longitude": {"field": "symbol_lon", "type": "quantitative"},
         "latitude": {"field": "symbol_lat", "type": "quantitative"},
@@ -68,7 +60,7 @@
       }
     },
     {
-      "description": "State name inside each circle",
+      "description": "State code inside each triangle",
       "data": {
         "url": "data/animals_received.csv",
         "format": {"type": "csv", "parse": {"symbol_lon": "number", "symbol_lat": "number"}}
@@ -82,10 +74,15 @@
     }
   ],
   "config": {
+    "font": "Space Grotesk",
     "view": {"stroke": null},
-    "title": {"fontSize": 18, "subtitleFontSize": 13},
-    "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10},
-    "legend": {"labelFontSize": 13, "titleFontSize": 13}
+    "title": {
+      "font": "Playfair Display", "fontSize": 20, "fontWeight": 700, "anchor": "middle",
+      "subtitleFont": "Space Grotesk", "subtitleFontSize": 13, "subtitleColor": "#334155",
+      "subtitleLineHeight": 17, "subtitlePadding": 8
+    },
+    "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10, "labelColor": "#1f2937", "titleFontWeight": 600},
+    "legend": {"labelFontSize": 13, "titleFontSize": 13, "labelColor": "#1f2937", "titleFontWeight": 600}
   },
   "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10}
 }

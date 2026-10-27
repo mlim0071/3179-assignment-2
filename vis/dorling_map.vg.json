@@ -28,18 +28,8 @@
     }
   },
   "encoding": {
-    "x": {
-      "field": "x",
-      "type": "quantitative",
-      "scale": {"domain": [0, 440], "nice": false, "zero": false},
-      "axis": null
-    },
-    "y": {
-      "field": "y",
-      "type": "quantitative",
-      "scale": {"domain": [430, 0], "nice": false, "zero": false},
-      "axis": null
-    }
+    "x": {"field": "x", "type": "quantitative", "scale": {"domain": [0, 440], "nice": false, "zero": false}, "axis": null},
+    "y": {"field": "y", "type": "quantitative", "scale": {"domain": [430, 0], "nice": false, "zero": false}, "axis": null}
   },
   "layer": [
     {
@@ -61,13 +51,7 @@
             "domain": ["Under 100", "100 to 199", "200 to 299", "300 or more"],
             "range": ["#efedf5", "#bcbddc", "#807dba", "#54278f"]
           },
-          "legend": {
-            "orient": "right",
-            "labelFontSize": 13,
-            "titleFontSize": 13,
-            "symbolType": "circle",
-            "symbolSize": 260
-          }
+          "legend": {"orient": "right", "labelFontSize": 13, "titleFontSize": 13, "symbolType": "circle", "symbolSize": 260}
         },
         "tooltip": [
           {"field": "state", "title": "State"},
@@ -104,30 +88,28 @@
       "encoding": {"text": {"field": "state_code"}}
     },
     {
-      "description": "Annotation about the three territories and the pound-animal footnote",
+      "description": "Short note: the one comparison that matters, plus the pound-animal footnote",
       "data": {"values": [{"x": 10, "y": 385}]},
       "transform": [
         {
-          "calculate": "['Received per 100,000 people:', 'ACT 522, SA 280, QLD 254, TAS 187,', 'NT 175, NSW 116, VIC 83, WA 62', '(ACT, NT, TAS exclude pound animals)']",
+          "calculate": "['ACT: 522 per 100,000, nearly double', 'the next highest (SA, 280)', '(ACT, NT, TAS exclude pound animals)']",
           "as": "note"
         }
       ],
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "fontSize": 13,
-        "fontStyle": "italic",
-        "color": "#475569",
-        "lineBreak": "\n"
-      },
+      "mark": {"type": "text", "align": "left", "fontSize": 13, "fontStyle": "italic", "color": "#475569", "lineBreak": "\n"},
       "encoding": {"text": {"field": "note"}}
     }
   ],
   "config": {
+    "font": "Space Grotesk",
     "view": {"stroke": null},
-    "title": {"fontSize": 18, "subtitleFontSize": 13},
-    "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10},
-    "legend": {"labelFontSize": 13, "titleFontSize": 13}
+    "title": {
+      "font": "Playfair Display", "fontSize": 20, "fontWeight": 700, "anchor": "middle",
+      "subtitleFont": "Space Grotesk", "subtitleFontSize": 13, "subtitleColor": "#334155",
+      "subtitleLineHeight": 17, "subtitlePadding": 8
+    },
+    "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10, "labelColor": "#1f2937", "titleFontWeight": 600},
+    "legend": {"labelFontSize": 13, "titleFontSize": 13, "labelColor": "#1f2937", "titleFontWeight": 600}
   },
   "transform": [
     {
