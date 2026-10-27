@@ -1,9 +1,9 @@
-state,state_code,lat,lon,avg_vet_cost_index,label_lon,label_lat,total_pets_thousands,pet_density_pct
-New South Wales,NSW,-33.8688,151.2093,105,146.8,-32.6,10200.0,72
-Victoria,VIC,-37.8136,144.9631,102,144.6,-36.9,9100.0,74
-Queensland,QLD,-27.4698,153.0251,98,144.5,-22.8,8400.0,75
-Western Australia,WA,-31.9505,115.8605,110,122.0,-25.5,3300.0,71
-South Australia,SA,-34.9285,138.6007,95,135.2,-30.0,2200.0,69
-Tasmania,TAS,-42.8821,147.3272,92,146.6,-45.3,800.0,70
-Northern Territory,NT,-12.4634,130.8456,115,133.5,-19.5,300.0,68
-Australian Capital Territory,ACT,-35.2809,149.1300,108,154.8,-36.0,400.0,72
+state,state_code,population_thousands,dogs_received,cats_received,dogs_rehomed,cats_rehomed,label_lon,label_lat
+New South Wales,NSW,8593.9,3320,6621,1350,3863,146.8,-32.6
+Victoria,VIC,7074.5,2015,3830,704,2688,144.6,-36.9
+Queensland,QLD,5669.8,6401,8019,2922,4992,144.5,-22.8
+South Australia,SA,1902.3,1963,3355,867,2191,135.2,-30.0
+Western Australia,WA,3043.7,975,920,347,604,122.0,-25.5
+Tasmania,TAS,576.0,379,700,220,488,146.6,-45.4
+Northern Territory,NT,264.4,204,259,119,186,133.5,-19.5
+Australian Capital Territory,ACT,484.8,595,1935,310,1433,153.4,-36.4

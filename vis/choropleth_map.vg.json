@@ -1,9 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Choropleth map of the share of households with a pet, by state and territory.",
+  "description": "Choropleth map of the share of dogs and cats received by RSPCA that were rehomed, by state, 2024-25. Source: RSPCA Australia, National Statistics 2024-25, Table 4.",
   "title": {
-    "text": "Share of Households with a pet by state",
-    "subtitle": "Darker blue represents a higher share of households owning a pet"
+    "text": "The ACT, NT and Tasmania Rehome the Biggest Share of the Animals They Receive",
+    "subtitle": [
+      "Share of dogs and cats received by RSPCA that were rehomed, 2024-25.",
+      "ACT, NT and Tasmania figures exclude pound animals, so compare them with care."
+    ]
   },
   "width": 720,
   "height": 520,
@@ -13,47 +16,65 @@
     {
       "lookup": "properties.STATE_NAME",
       "from": {
-        "data": {"url": "data/australia_states_pets.csv"},
+        "data": {
+          "url": "data/australia_states_pets.csv",
+          "format": {
+            "type": "csv",
+            "parse": {
+              "population_thousands": "number",
+              "dogs_rehomed": "number",
+              "cats_rehomed": "number",
+              "label_lon": "number",
+              "label_lat": "number",
+              "dogs_received": "number",
+              "cats_received": "number"
+            }
+          }
+        },
         "key": "state",
-        "fields": ["state_code", "pet_density_pct", "total_pets_thousands", "label_lon", "label_lat"]
+        "fields": [
+          "state_code",
+          "dogs_received",
+          "cats_received",
+          "dogs_rehomed",
+          "cats_rehomed",
+          "label_lon",
+          "label_lat"
+        ]
       }
     },
-    {"calculate": "datum.state_code + ' ' + format(datum.pet_density_pct, '.1f') + '%'", "as": "label"},
-    {
-      "calculate": "datum.state_code == 'ACT' ? toNumber(datum.label_lon) + 2.4 : toNumber(datum.label_lon)",
-      "as": "label_x"
-    }
+    {"calculate": "toNumber(datum.dogs_received) + toNumber(datum.cats_received)", "as": "received"},
+    {"calculate": "toNumber(datum.dogs_rehomed) + toNumber(datum.cats_rehomed)", "as": "rehomed"},
+    {"calculate": "datum.rehomed / datum.received * 100", "as": "pct_rehomed"}
   ],
   "layer": [
     {
-      "mark": {"type": "geoshape", "stroke": "#ffffff", "strokeWidth": 0.5},
+      "mark": {"type": "geoshape", "stroke": "#ffffff", "strokeWidth": 0.7},
       "encoding": {
         "color": {
-          "field": "pet_density_pct",
+          "field": "pct_rehomed",
           "type": "quantitative",
-          "scale": {"scheme": "blues", "domain": [66, 78]},
+          "scale": {"scheme": "blues", "domain": [50, 70]},
           "legend": {
-            "title": ["Households", "with a pet (%)"],
+            "title": ["Animals", "rehomed (%)"],
             "orient": "right",
             "gradientLength": 220,
-            "values": [66, 70, 74, 78]
+            "values": [50, 55, 60, 65, 70],
+            "labelFontSize": 13,
+            "titleFontSize": 13
           }
         },
         "tooltip": [
           {"field": "properties.STATE_NAME", "type": "nominal", "title": "State/Territory"},
-          {"field": "pet_density_pct", "type": "quantitative", "title": "Households with a pet (%)"},
-          {
-            "field": "total_pets_thousands",
-            "type": "quantitative",
-            "title": "Total pets ('000)",
-            "format": ","
-          }
+          {"field": "pct_rehomed", "type": "quantitative", "title": "Rehomed (%)", "format": ".1f"},
+          {"field": "received", "type": "quantitative", "title": "Animals received", "format": ","},
+          {"field": "rehomed", "type": "quantitative", "title": "Animals rehomed", "format": ","}
         ]
       }
     },
     {
-      "data": {"values": [{"lon": 149.13, "lat": -35.28, "lon2": 152.8, "lat2": -36.0}]},
-      "mark": {"type": "rule", "stroke": "#475569", "strokeWidth": 1},
+      "data": {"values": [{"lon": 149.13, "lat": -35.28, "lon2": 153.4, "lat2": -36.4}]},
+      "mark": {"type": "rule", "stroke": "#1e293b", "strokeWidth": 1.5},
       "encoding": {
         "longitude": {"field": "lon", "type": "quantitative"},
         "latitude": {"field": "lat", "type": "quantitative"},
@@ -62,15 +83,78 @@
       }
     },
     {
+      "transform": [{"filter": "datum.state_code == 'ACT'"}],
+      "mark": {"type": "circle", "size": 1300, "stroke": "#1e293b", "strokeWidth": 2.5, "opacity": 1},
+      "encoding": {
+        "longitude": {"field": "label_lon", "type": "quantitative"},
+        "latitude": {"field": "label_lat", "type": "quantitative"},
+        "color": {
+          "field": "pct_rehomed",
+          "type": "quantitative",
+          "scale": {"scheme": "blues", "domain": [50, 70]},
+          "legend": {
+            "title": ["Animals", "rehomed (%)"],
+            "orient": "right",
+            "gradientLength": 220,
+            "values": [50, 55, 60, 65, 70],
+            "labelFontSize": 13,
+            "titleFontSize": 13
+          }
+        }
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.state_code != 'ACT'"},
+        {"calculate": "datum.state_code + ' ' + format(datum.pct_rehomed, '.0f') + '%'", "as": "label"}
+      ],
       "mark": {"type": "text", "fontSize": 13, "fontWeight": "bold", "baseline": "middle"},
       "encoding": {
-        "longitude": {"field": "label_x", "type": "quantitative"},
+        "longitude": {"field": "label_lon", "type": "quantitative"},
         "latitude": {"field": "label_lat", "type": "quantitative"},
         "text": {"field": "label", "type": "nominal"},
         "color": {
-          "condition": {"test": "datum.pet_density_pct > 73 && datum.state_code !== 'TAS'", "value": "#ffffff"},
+          "condition": {"test": "datum.pct_rehomed >= 60 && datum.state_code != 'TAS'", "value": "#ffffff"},
           "value": "#1e293b"
         }
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.state_code == 'ACT'"},
+        {"calculate": "'ACT ' + format(datum.pct_rehomed, '.0f') + '%'", "as": "label"}
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontWeight": "bold",
+        "baseline": "middle",
+        "align": "left",
+        "dx": 24,
+        "color": "#1e293b"
+      },
+      "encoding": {
+        "longitude": {"field": "label_lon", "type": "quantitative"},
+        "latitude": {"field": "label_lat", "type": "quantitative"},
+        "text": {"field": "label", "type": "nominal"}
+      }
+    },
+    {
+      "transform": [{"filter": "datum.state_code == 'ACT'"}],
+      "mark": {
+        "type": "text",
+        "fontSize": 13,
+        "fontStyle": "italic",
+        "baseline": "middle",
+        "align": "left",
+        "dx": 24,
+        "dy": 17,
+        "color": "#475569"
+      },
+      "encoding": {
+        "longitude": {"field": "label_lon", "type": "quantitative"},
+        "latitude": {"field": "label_lat", "type": "quantitative"},
+        "text": {"value": "Australian Capital Territory"}
       }
     }
   ],

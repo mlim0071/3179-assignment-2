@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- Vega & Vega-Lite Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/vega@5.25.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.0"></script>
@@ -12,7 +12,7 @@
 
     <!-- Custom CSS Link -->
     <link rel="stylesheet" href="css/style.css">
-    
+
     <title>Australia's Favorite Pets: A National Exploration</title>
 </head>
 <body>
@@ -28,7 +28,7 @@
         <section id="section1">
             <h2>Section 1: Introduction</h2>
             <p>Pets play an essential role in Australian society and culture, with ownership reaching massive heights across households nationwide.</p>
-            
+
             <div id="donut_chart" class="chart-container"></div>
             <div class="chart-annotation">
                 <strong>Key Takeaway:</strong> Nearly 73% of Australian households share their homes with at least one companion animal, highlighting that pets are essential members of domestic life.
@@ -38,25 +38,24 @@
         <!-- Section 2: Ownership Trends -->
         <section id="section2">
             <h2>Section 2: Ownership Trends Over Time</h2>
-            <p>Tracking how total pet populations and national expenditure have evolved across recent multi-year national surveys.</p>
-            
+            <p>Tracking how pet ownership and national spending on pets have changed across recent national surveys.</p>
+
             <div id="line_chart" class="chart-container"></div>
             <div class="chart-annotation">
-                <strong>Population Growth:</strong> Both cat and dog populations have steadily increased as animal companionship was desired by more households.
+                <strong>Ownership growth:</strong> The share of households owning a pet rose from 61% in 2019 to 73% in 2025, with most of the increase during the pandemic years.
             </div>
 
             <div id="dumbell_chart" class="chart-container"></div>
             <div class="chart-annotation">
                 <strong>Spending growth:</strong> Estimated spending rose 35%, from $15.7 billion in 2022 (recalculated by AMA) to $21.3 billion in 2025. Dogs account for $13.2 billion of it and cats $5.9 billion, and dog spending grew the most (+49%).
             </div>
-
         </section>
 
         <!-- Section 3: Household Preferences -->
         <section id="section3">
             <h2>Section 3: Household Preferences</h2>
             <p>Examining which species dominate Australian households and comparing total animal populations to owning homes.</p>
-            
+
             <div id="lollipop_chart" class="chart-container"></div>
             <div class="chart-annotation">
                 <strong>Penetration Leaderboard:</strong> Dogs are shown as Australia's top companion animal, found in nearly 50% of all households, followed closely by cats.
@@ -76,21 +75,21 @@
         <!-- Section 4: Geographic & Demographic Distribution -->
         <section id="section4">
             <h2>Section 4: Geographic Distribution & Demographics</h2>
-            <p>Exploring state-level differences in pet ownership density across Australian states and territories.</p>
-            
+            <p>Comparing how RSPCA shelters in each state and territory take in and rehome animals, and which Australians own pets.</p>
+
             <div id="map1" class="chart-container"></div>
             <div class="chart-annotation">
-                <strong>Regional Variance:</strong> Regional and suburban states record higher pet density percentages compared to densely populated metropolitan capitals.
+                <strong>Share rehomed:</strong> The ACT (69%), NT (66%) and Tasmania (66%) rehome the biggest share of the animals they receive, while Western Australia (50%) and NSW (52%) rehome the smallest. Their figures exclude pound animals, so compare them with care.
             </div>
 
             <div id="map2" class="chart-container"></div>
             <div class="chart-annotation">
-                <strong>Absolute volume:</strong> Queensland and NSW receive the most animals in RSPCA shelters, but per person the ACT and South Australia stand out (see the map above).
+                <strong>Absolute volume:</strong> Queensland (14,420) and NSW (9,941) receive the most animals in RSPCA shelters, but counts mostly follow population, so the next map adjusts for it. ACT, NT and Tasmania figures exclude pound animals.
             </div>
 
             <div id="map3" class="chart-container"></div>
             <div class="chart-annotation">
-                <strong>Share rehomed:</strong> The ACT (69%), NT (66%) and Tasmania (66%), the three smallest populations, rehome the biggest share of the animals they receive. Their figures exclude pound animals, so compare them with care.
+                <strong>Intake per person:</strong> Circle size shows population and colour shows animals received per 100,000 people. The ACT (522) takes in nearly twice as many as any other state, followed by SA (280) and QLD (254).
             </div>
 
             <div id="heatmap_owner" class="chart-container"></div>
@@ -103,12 +102,31 @@
         <section id="section5">
             <h2>Section 5: Conclusion</h2>
             <p>Summarizing the deep emotional bonds Australians share with their companion animals against modern economic realities.</p>
-            
+
             <div id="conclusion_chart" class="chart-container"></div>
             <div class="chart-annotation">
                 <strong>The 2022–2025 Shift:</strong> Although pet ownership remains strong, rising financial costs have become the main reason households hesitate about getting another pet.
             </div>
         </section>
+
+        <!-- Author and sources -->
+        <footer id="sources">
+            <p class="author-line">
+                <strong>Author:</strong> Matthew Lim <span class="sep">|</span>
+                <strong>Student ID:</strong> 34075577 <span class="sep">|</span>
+                <strong>Date of authorship:</strong> 27 October 2026
+            </p>
+
+            <h3>Sources / References</h3>
+            <ul>
+                <li>Animal Medicines Australia. (2025). <em>Pets in Australia: A national survey of pets and people</em> [PDF]. https://animalmedicinesaustralia.org.au/wp-content/uploads/2025/09/SNR-2403006-Pet-Ownership-Study-2025-Designed_F3.pdf</li>
+                <li>Australian Veterinary Association. (2025, September 25). <em>Australians' love for pets grows – but cost pressures bite</em>. https://www.ava.com.au/national/australians-love-for-pets-grows-but-cost-pressures-bite</li>
+                <li>RSPCA Australia. (2025). <em>RSPCA Australia annual statistics 2024-2025</em> (Table 4) [PDF]. https://rspca.sfo2.cdn.digitaloceanspaces.com/public/Uploads/annual-statistics/RSPCA-Australia-Annual-Statistics-2024-2025.pdf</li>
+                <li>Australian Bureau of Statistics. (2025, December 18). <em>Population up 1.5% in June 2025</em> [Media release]. https://www.abs.gov.au/media-centre/media-releases/population-15-june-2025</li>
+                <li>Taniguchi, Y., Ikeuchi, T., &amp; Yong, J. (2024). Dog, cat, bird, fish, and other pet ownership and mortality: Evidence from the HILDA cohort. <em>PLOS ONE, 19</em>(8), e0305546 [PDF]. https://pmc.ncbi.nlm.nih.gov/articles/PMC11324118/pdf/pone.0305546.pdf</li>
+                <li>Hogan, R. (n.d.). <em>Australian States Map</em> [GeoJSON data set]. GitHub. https://github.com/rowanhogan/australian-states</li>
+            </ul>
+
     </div>
 
     <!-- External JS file embedding all Vega-Lite charts -->

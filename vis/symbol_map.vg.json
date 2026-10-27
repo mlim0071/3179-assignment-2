@@ -1,10 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Proportional symbol map: dogs and cats received by RSPCA shelters per state, 2024-25. Source: RSPCA Australia, National Statistics 2024-25.",
+  "description": "Proportional symbol map: dogs and cats received by RSPCA shelters per state, 2024-25, shown as triangles sized by number of animals. Source: RSPCA Australia, National Statistics 2024-25.",
   "title": {
     "text": "Queensland and NSW Take In the Most Animals",
     "subtitle": [
-      "Dogs and cats received by RSPCA shelters, 2024-25. Circle area shows the number of animals.",
+      "Dogs and cats received by RSPCA shelters, 2024-25. Triangle area shows the number of animals.",
       "ACT, NT and Tasmania figures exclude pound animals."
     ]
   },
@@ -32,14 +32,22 @@
           }
         }
       },
-      "mark": {"type": "circle", "color": "#d55e00", "opacity": 0.92, "stroke": "#ffffff", "strokeWidth": 1.5},
+      "mark": {
+        "type": "point",
+        "shape": "triangle-up",
+        "filled": true,
+        "color": "#d55e00",
+        "opacity": 0.92,
+        "stroke": "#ffffff",
+        "strokeWidth": 1.5
+      },
       "encoding": {
         "longitude": {"field": "symbol_lon", "type": "quantitative"},
         "latitude": {"field": "symbol_lat", "type": "quantitative"},
         "size": {
           "field": "total_received",
           "type": "quantitative",
-          "scale": {"domain": [0, 15000], "range": [0, 6000], "type": "sqrt", "zero": true},
+          "scale": {"domain": [0, 15000], "range": [0, 9000], "type": "sqrt", "zero": true},
           "legend": {
             "title": "Animals received",
             "orient": "right",
@@ -47,7 +55,8 @@
             "format": ",.0f",
             "symbolFillColor": "#d55e00",
             "labelFontSize": 13,
-            "titleFontSize": 13
+            "titleFontSize": 13,
+            "symbolType": "triangle-up"
           }
         },
         "tooltip": [
@@ -64,7 +73,7 @@
         "url": "data/animals_received.csv",
         "format": {"type": "csv", "parse": {"symbol_lon": "number", "symbol_lat": "number"}}
       },
-      "mark": {"type": "text", "fontSize": 13, "fontWeight": "bold", "color": "#ffffff"},
+      "mark": {"type": "text", "fontSize": 12, "fontWeight": "bold", "color": "#ffffff", "dy": 7},
       "encoding": {
         "longitude": {"field": "symbol_lon", "type": "quantitative"},
         "latitude": {"field": "symbol_lat", "type": "quantitative"},
