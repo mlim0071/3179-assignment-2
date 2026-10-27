@@ -66,8 +66,7 @@
       "data": {"values": [{"pet_type": "Other pets", "x": 10}]},
       "mark": {"type": "text", "align": "left", "fontSize": 13, "fontStyle": "italic", "color": "#475569"},
       "encoding": {
-        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [-3, 28], "nice": false, "zero": false}},
-        "text": {"value": "2022 amount = total minus dogs and cats"}
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [-3, 28], "nice": false, "zero": false}}
       }
     }
   ],
