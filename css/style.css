@@ -20,7 +20,7 @@ body {
 }
 
 #page-container {
-  max-width: 900px;            /* was 900px: gives the larger charts room */
+  max-width: 900px;            
   margin: 40px auto;
   padding: 0 20px;
 }
@@ -71,7 +71,7 @@ section > p {
   font-family: 'Space Grotesk', sans-serif;
   color: var(--text-muted);
   font-size: 1.05rem;
-  margin-bottom: 25px;
+  margin-bottom: 8px;
 }
 
 .chart-container {
@@ -80,7 +80,7 @@ section > p {
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin: 20px auto 0;        /* was 20px auto: removes the gap below the chart */
+    margin: 20px auto 0;        
     width: 100%;
 }
 
@@ -90,7 +90,7 @@ section > p {
   background: #f1f5f9;
   border-left: 4px solid var(--accent-blue);
   padding: 14px 18px;
-  margin-top: 8px;              /* was 15px */
+  margin-top: 0px;             
   font-size: 0.95rem;
   color: #334155;
   border-radius: 0 6px 6px 0;
