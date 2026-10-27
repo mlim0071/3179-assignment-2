@@ -1,15 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Choropleth map of the share of dogs and cats received by RSPCA that were rehomed, by state, 2024-25. Source: RSPCA Australia, National Statistics 2024-25, Table 4.",
-  "title": {
-    "text": "The ACT, NT and Tasmania Rehome the Biggest Share of the Animals They Receive",
-    "subtitle": [
-      "Share of dogs and cats received by RSPCA that were rehomed, 2024-25.",
-      "ACT, NT and Tasmania figures exclude pound animals, so compare them with care."
-    ]
-  },
-  "width": 720,
-  "height": 520,
+  "width": 405,
+  "height": 340,
   "projection": {"type": "mercator"},
   "data": {"url": "data/australia_states.geojson", "format": {"type": "json", "property": "features"}},
   "transform": [
@@ -46,11 +39,13 @@
         "color": {
           "field": "pct_rehomed",
           "type": "quantitative",
-          "scale": {"scheme": "blues", "domain": [50, 70]},
+          "scale": {"scheme": "teals", "domain": [50, 70]},
           "legend": {
             "title": ["Animals", "rehomed (%)"],
-            "orient": "right",
+            "orient": "bottom",
+            "direction": "horizontal",
             "gradientLength": 220,
+            "gradientThickness": 12,
             "values": [50, 55, 60, 65, 70],
             "labelFontSize": 13,
             "titleFontSize": 13
@@ -83,11 +78,13 @@
         "color": {
           "field": "pct_rehomed",
           "type": "quantitative",
-          "scale": {"scheme": "blues", "domain": [50, 70]},
+          "scale": {"scheme": "teals", "domain": [50, 70]},
           "legend": {
             "title": ["Animals", "rehomed (%)"],
-            "orient": "right",
+            "orient": "bottom",
+            "direction": "horizontal",
             "gradientLength": 220,
+            "gradientThickness": 12,
             "values": [50, 55, 60, 65, 70],
             "labelFontSize": 13,
             "titleFontSize": 13
@@ -128,25 +125,23 @@
       }
     },
     {
-      "transform": [{"filter": "datum.state_code == 'ACT'"}],
-      "mark": {"type": "text", "fontSize": 13, "fontStyle": "italic", "baseline": "middle", "align": "left", "dx": 24, "dy": 17, "color": "#475569"},
+      "transform": [
+        {"filter": "datum.state_code == 'ACT'"},
+        {"calculate": "['Australian','Capital Territory']", "as": "full"}
+      ],
+      "mark": {"type": "text", "fontSize": 13, "fontStyle": "italic", "baseline": "middle", "align": "left", "dx": 24, "dy": 22, "color": "#475569", "lineBreak": "\n"},
       "encoding": {
         "longitude": {"field": "label_lon", "type": "quantitative"},
         "latitude": {"field": "label_lat", "type": "quantitative"},
-        "text": {"value": "Australian Capital Territory"}
+        "text": {"field": "full", "type": "nominal"}
       }
     }
   ],
   "config": {
     "font": "Space Grotesk",
     "view": {"stroke": null},
-    "title": {
-      "font": "Playfair Display", "fontSize": 20, "fontWeight": 700, "anchor": "middle",
-      "subtitleFont": "Space Grotesk", "subtitleFontSize": 13, "subtitleColor": "#334155",
-      "subtitleLineHeight": 17, "subtitlePadding": 8
-    },
     "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10, "labelColor": "#1f2937", "titleFontWeight": 600},
     "legend": {"labelFontSize": 13, "titleFontSize": 13, "labelColor": "#1f2937", "titleFontWeight": 600}
   },
-  "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10}
+  "padding": {"top": 10, "bottom": 10, "left": 10, "right": 10}
 }

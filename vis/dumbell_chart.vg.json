@@ -1,27 +1,14 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Dumbbell chart: estimated pet spending in 2022 (recalculated by AMA) vs 2025, by pet type. Source: AMA, Pets in Australia 2025, Methodology note 1.",
-  "title": {
-    "text": "Spending on Pets Is Up About 35% in Three Years, Led by Dogs",
-    "subtitle": [
-      "Estimated annual spending by pet type, $ billions. Grey dot = 2022, blue dot = 2025.",
-      "Labels show the 2025 value and the change since 2022. AMA reports 35% for all pets."
-    ]
-  },
-  "width": 700,
-  "height": 320,
-  "data": {
-    "url": "data/pet_spend.csv",
-    "format": {"type": "csv", "parse": {"spend_billion": "number", "year": "string"}}
-  },
+  "width": 400,
+  "height": 280,
+  "data": {"url": "data/pet_spend.csv", "format": {"type": "csv", "parse": {"spend_billion": "number", "year": "string"}}},
   "transform": [
     {"pivot": "year", "value": "spend_billion", "groupby": ["pet_type"]},
     {"calculate": "datum['2022']", "as": "y2022"},
     {"calculate": "datum['2025']", "as": "y2025"},
-    {
-      "calculate": "datum.pet_type == 'All pets' ? 35 : round((datum.y2025 / datum.y2022 - 1) * 100)",
-      "as": "change_pct"
-    }
+    {"calculate": "datum.pet_type == 'All pets' ? 35 : round((datum.y2025 / datum.y2022 - 1) * 100)", "as": "change_pct"}
   ],
   "encoding": {
     "y": {
@@ -50,23 +37,13 @@
     {
       "description": "2022 dot (grey)",
       "mark": {"type": "point", "filled": true, "size": 200, "opacity": 1, "color": "#94a3b8"},
-      "encoding": {
-        "x": {
-          "field": "y2022",
-          "type": "quantitative",
-          "scale": {"domain": [-3, 28], "nice": false, "zero": false}
-        }
-      }
+      "encoding": {"x": {"field": "y2022", "type": "quantitative", "scale": {"domain": [-3, 28], "nice": false, "zero": false}}}
     },
     {
-      "description": "2025 dot (blue) with tooltip",
-      "mark": {"type": "point", "filled": true, "size": 200, "opacity": 1, "color": "#0072b2"},
+      "description": "2025 dot (dark) with tooltip",
+      "mark": {"type": "point", "filled": true, "size": 200, "opacity": 1, "color": "#1f2937"},
       "encoding": {
-        "x": {
-          "field": "y2025",
-          "type": "quantitative",
-          "scale": {"domain": [-3, 28], "nice": false, "zero": false}
-        },
+        "x": {"field": "y2025", "type": "quantitative", "scale": {"domain": [-3, 28], "nice": false, "zero": false}},
         "tooltip": [
           {"field": "pet_type", "title": "Pet"},
           {"field": "y2022", "format": ".2f", "title": "2022 ($B)"},
@@ -76,15 +53,11 @@
       }
     },
     {
-      "description": "2025 value and % change label (right of blue dot)",
+      "description": "2025 value and % change label (right of dark dot)",
       "transform": [{"calculate": "format(datum.y2025, '$.1f') + 'B   +' + datum.change_pct + '%'", "as": "label"}],
       "mark": {"type": "text", "align": "left", "dx": 12, "fontSize": 13, "fontWeight": "bold", "color": "#1f2937"},
       "encoding": {
-        "x": {
-          "field": "y2025",
-          "type": "quantitative",
-          "scale": {"domain": [-3, 28], "nice": false, "zero": false}
-        },
+        "x": {"field": "y2025", "type": "quantitative", "scale": {"domain": [-3, 28], "nice": false, "zero": false}},
         "text": {"field": "label"}
       }
     },
@@ -93,19 +66,15 @@
       "data": {"values": [{"pet_type": "Other pets", "x": 10}]},
       "mark": {"type": "text", "align": "left", "fontSize": 13, "fontStyle": "italic", "color": "#475569"},
       "encoding": {
-        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [-3, 28], "nice": false, "zero": false}}
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [-3, 28], "nice": false, "zero": false}},
+        "text": {"value": "2022 amount = total minus dogs and cats"}
       }
     }
   ],
-  "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10},
+  "padding": {"top": 10, "bottom": 10, "left": 10, "right": 10},
   "config": {
     "font": "Space Grotesk",
     "view": {"stroke": null},
-    "title": {
-      "font": "Playfair Display", "fontSize": 20, "fontWeight": 700, "anchor": "middle",
-      "subtitleFont": "Space Grotesk", "subtitleFontSize": 13, "subtitleColor": "#334155",
-      "subtitleLineHeight": 17, "subtitlePadding": 8
-    },
     "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10, "labelColor": "#1f2937", "titleFontWeight": 600},
     "legend": {"labelFontSize": 13, "titleFontSize": 13, "labelColor": "#1f2937", "titleFontWeight": 600}
   }

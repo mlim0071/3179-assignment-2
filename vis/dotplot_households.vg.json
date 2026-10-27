@@ -1,19 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Cleveland dot plot showing absolute owning households across species.",
-  "title": {
-    "text": "Australian Households Owning Pets",
-    "subtitle": "Ranked by total owning households (millions)"
-  },
   "data": {"url": "data/species_preferences.csv"},
-  "width": 600,
-  "height": 300,
+  "width": 365,
+  "height": 280,
   "transform": [
     {"calculate": "datum.owning_households_thousands / 1000", "as": "households_millions"},
-    {
-      "calculate": "format(datum.households_millions, '.2f') + 'M (' + datum.penetration_rate + '%)'",
-      "as": "label"
-    }
+    {"calculate": "format(datum.households_millions, '.2f') + 'M (' + datum.penetration_rate + '%)'", "as": "label"}
   ],
   "encoding": {
     "y": {
@@ -39,10 +32,8 @@
           "field": "group",
           "type": "nominal",
           "title": "Animal Class",
-          "scale": {
-            "domain": ["Mammals", "Aquatic", "Avian", "Reptiles"],
-            "range": ["#cc79a7", "#56b4e9", "#e69f00", "#882255"]
-          }
+          "scale": {"domain": ["Mammals", "Aquatic", "Avian", "Reptiles"], "range": ["#cc79a7", "#56b4e9", "#e69f00", "#882255"]},
+          "legend": {"orient": "bottom", "direction": "horizontal"}
         },
         "tooltip": [
           {"field": "species", "type": "nominal", "title": "Species"},
@@ -61,13 +52,8 @@
   "config": {
     "font": "Space Grotesk",
     "view": {"stroke": null},
-    "title": {
-      "font": "Playfair Display", "fontSize": 20, "fontWeight": 700, "anchor": "middle",
-      "subtitleFont": "Space Grotesk", "subtitleFontSize": 13, "subtitleColor": "#334155",
-      "subtitleLineHeight": 17, "subtitlePadding": 8
-    },
     "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10, "labelColor": "#1f2937", "titleFontWeight": 600},
     "legend": {"labelFontSize": 13, "titleFontSize": 13, "labelColor": "#1f2937", "titleFontWeight": 600}
   },
-  "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10}
+  "padding": {"top": 10, "bottom": 10, "left": 10, "right": 10}
 }

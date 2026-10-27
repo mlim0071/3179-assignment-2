@@ -1,13 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Horizontal Lollipop Chart sorted by descending household penetration.",
-  "title": {
-    "text": "Household Pet Penetration Rates (%)",
-    "subtitle": "Ranked from highest to lowest household ownership"
-  },
   "data": {"url": "data/species_preferences.csv"},
-  "width": 600,
-  "height": 320,
+  "width": 360,
+  "height": 280,
   "encoding": {
     "y": {
       "field": "species",
@@ -25,25 +21,29 @@
   "layer": [
     {"mark": {"type": "rule", "color": "#cbd5e1", "strokeWidth": 2}, "encoding": {"x2": {"value": 0}}},
     {
-      "mark": {"type": "point", "size": 140, "filled": true, "color": "#2b6cb0"},
+      "mark": {"type": "point", "size": 140, "filled": true},
       "encoding": {
         "tooltip": [
           {"field": "species", "type": "nominal", "title": "Species"},
           {"field": "penetration_rate", "type": "quantitative", "title": "Penetration Rate (%)"}
-        ]
+        ],
+        "color": {
+          "field": "species",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": ["Dogs", "Cats", "Fish", "Birds", "Small mammals", "Reptiles"],
+            "range": ["#0072b2", "#d55e00", "#94a3b8", "#94a3b8", "#94a3b8", "#94a3b8"]
+          }
+        }
       }
     }
   ],
   "config": {
     "font": "Space Grotesk",
     "view": {"stroke": null},
-    "title": {
-      "font": "Playfair Display", "fontSize": 20, "fontWeight": 700, "anchor": "middle",
-      "subtitleFont": "Space Grotesk", "subtitleFontSize": 13, "subtitleColor": "#334155",
-      "subtitleLineHeight": 17, "subtitlePadding": 8
-    },
     "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10, "labelColor": "#1f2937", "titleFontWeight": 600},
     "legend": {"labelFontSize": 13, "titleFontSize": 13, "labelColor": "#1f2937", "titleFontWeight": 600}
   },
-  "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10}
+  "padding": {"top": 10, "bottom": 10, "left": 10, "right": 10}
 }

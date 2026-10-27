@@ -1,12 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Sorted vertical bar chart comparing total pet populations across species.",
-  "title": {
-    "text": "Total Pet Populations in Australia",
-    "subtitle": "Ranked from highest to lowest total animal count (millions)"
-  },
   "data": {"url": "data/species_preferences.csv"},
-  "width": 600,
+  "width": 860,
   "height": 320,
   "transform": [{"calculate": "datum.total_population_thousands / 1000", "as": "population_millions"}],
   "encoding": {
@@ -28,10 +24,8 @@
       "field": "group",
       "type": "nominal",
       "title": "Animal Class",
-      "scale": {
-        "domain": ["Mammals", "Aquatic", "Avian", "Reptiles"],
-        "range": ["#3182ce", "#1f4e78", "#d97706", "#8b5cf6"]
-      }
+      "scale": {"domain": ["Mammals", "Aquatic", "Avian", "Reptiles"], "range": ["#cc79a7", "#56b4e9", "#e69f00", "#882255"]},
+      "legend": {"orient": "bottom", "direction": "horizontal"}
     },
     "tooltip": [
       {"field": "species", "type": "nominal", "title": "Species"},
@@ -44,13 +38,8 @@
   "config": {
     "font": "Space Grotesk",
     "view": {"stroke": null},
-    "title": {
-      "font": "Playfair Display", "fontSize": 20, "fontWeight": 700, "anchor": "middle",
-      "subtitleFont": "Space Grotesk", "subtitleFontSize": 13, "subtitleColor": "#334155",
-      "subtitleLineHeight": 17, "subtitlePadding": 8
-    },
     "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10, "labelColor": "#1f2937", "titleFontWeight": 600},
     "legend": {"labelFontSize": 13, "titleFontSize": 13, "labelColor": "#1f2937", "titleFontWeight": 600}
   },
-  "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10}
+  "padding": {"top": 10, "bottom": 10, "left": 10, "right": 10}
 }

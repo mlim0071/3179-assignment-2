@@ -1,12 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Line chart of household pet ownership 2016-2025. Source: AMA, Pets in Australia 2025.",
-  "title": {
-    "text": "Pet Ownership Surged During the Pandemic and Kept Rising",
-    "subtitle": "Share of Australian households owning each kind of pet, by survey year"
-  },
-  "width": 720,
-  "height": 400,
+  "width": 420,
+  "height": 330,
   "data": {"url": "data/pet_trends.csv"},
   "encoding": {
     "x": {
@@ -50,10 +46,7 @@
     },
     {
       "description": "Label at the end of each line",
-      "transform": [
-        {"filter": "datum.year == 2025"},
-        {"calculate": "datum.group + '  ' + datum.pct + '%'", "as": "label"}
-      ],
+      "transform": [{"filter": "datum.year == 2025"}, {"calculate": "datum.group + '  ' + datum.pct + '%'", "as": "label"}],
       "mark": {"type": "text", "align": "left", "dx": 10, "fontSize": 14, "fontWeight": "bold"},
       "encoding": {"text": {"field": "label"}}
     }
@@ -61,13 +54,8 @@
   "config": {
     "font": "Space Grotesk",
     "view": {"stroke": null},
-    "title": {
-      "font": "Playfair Display", "fontSize": 20, "fontWeight": 700, "anchor": "middle",
-      "subtitleFont": "Space Grotesk", "subtitleFontSize": 13, "subtitleColor": "#334155",
-      "subtitleLineHeight": 17, "subtitlePadding": 8
-    },
     "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10, "labelColor": "#1f2937", "titleFontWeight": 600},
     "legend": {"labelFontSize": 13, "titleFontSize": 13, "labelColor": "#1f2937", "titleFontWeight": 600}
   },
-  "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10}
+  "padding": {"top": 10, "bottom": 10, "left": 10, "right": 10}
 }

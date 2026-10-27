@@ -1,3 +1,5 @@
+var opt = { actions: false };
+
 // Section 1: Introduction Chart
 var spec_donut = "vis/donut_chart.vg.json";
 vegaEmbed("#donut_chart", spec_donut).catch(console.error);

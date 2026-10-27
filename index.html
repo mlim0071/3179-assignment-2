@@ -21,91 +21,173 @@
         <!-- Header / Introduction -->
         <header>
             <h1>Australia's Favorite Pets</h1>
-            <p class="subtitle">Investigating the popularity, trends, preferences, and demographics of companion animals across Australia.</p>
+            <p class="subtitle">Popularity, trends, preferences and demographics<br>of Australian companion animals.</p>
         </header>
 
-        <!-- Section 1: Introduction -->
         <section id="section1">
             <h2>Section 1: Introduction</h2>
             <p>Pets play an essential role in Australian society and culture, with ownership reaching massive heights across households nationwide.</p>
 
-            <div id="donut_chart" class="chart-container"></div>
+            <div id="donut_chart" class="chart-container single"></div>
             <div class="chart-annotation">
-                <strong>Key Takeaway:</strong> Nearly 73% of Australian households share their homes with at least one companion animal, highlighting that pets are essential members of domestic life.
+                Nearly 73% of Australian households share their homes with at least one companion animal, indicating that pets are essential members of domestic life.
             </div>
         </section>
 
-        <!-- Section 2: Ownership Trends -->
         <section id="section2">
             <h2>Section 2: Ownership Trends Over Time</h2>
-            <p>Tracking how pet ownership and national spending on pets have changed across recent national surveys.</p>
+            <p>Tracking how ownership and spending have changed.<br>Data comes from recent national surveys.</p>
 
-            <div id="line_chart" class="chart-container"></div>
-            <div class="chart-annotation">
-                <strong>Ownership growth:</strong> The share of households owning a pet rose from 61% in 2019 to 73% in 2025, with most of the increase during the pandemic years.
-            </div>
+            <div class="chart-grid">
+                <article class="figure">
+                    <p class="fig-label">Figure 01 &middot; Line chart</p>
+                    <h3 class="fig-title">Pet Ownership Surged During the Pandemic and Kept Rising</h3>
+                    <p class="fig-sub">Share of Australian households owning each kind of pet, by survey year</p>
+                    <div id="line_chart" class="chart-container"></div>
+                    <div class="insights">
+                        <h4>Ownership rose after 2019</h4>
+                        <p>From <span class="key">61%</span> of households in 2019 to <span class="key">73%</span> in 2025.</p>
+                        <h4>The pandemic drove most of it</h4>
+                        <p>Two thirds of the rise came by 2022.</p>
+                        <h4>Dogs lead cats</h4>
+                        <p>In 2025, dogs reached 49% and cats 34%.</p>
+                    </div>
+                </article>
 
-            <div id="dumbell_chart" class="chart-container"></div>
-            <div class="chart-annotation">
-                <strong>Spending growth:</strong> Estimated spending rose 35%, from $15.7 billion in 2022 (recalculated by AMA) to $21.3 billion in 2025. Dogs account for $13.2 billion of it and cats $5.9 billion, and dog spending grew the most (+49%).
+                <article class="figure">
+                    <p class="fig-label">Figure 02 &middot; Dumbbell chart</p>
+                    <h3 class="fig-title">Spending on Pets Is Up About 35% in Three Years, Led by Dogs</h3>
+                    <p class="fig-sub">Estimated annual spending by pet type, $ billions. Grey dot = 2022, dark dot = 2025. Labels show the 2025 value and the change since 2022. AMA reports 35% for all pets.</p>
+                    <div id="dumbell_chart" class="chart-container"></div>
+                    <div class="insights">
+                        <h4>Spending is up 35%</h4>
+                        <p>From $15.7 billion in 2022 to <span class="key">$21.3 billion</span> in 2025.</p>
+                        <h4>Dogs drive the rise</h4>
+                        <p>Dogs account for $13.2 billion, up 49%.</p>
+                        <h4>Cats grew more slowly</h4>
+                        <p>Cat spending rose 22%, to $5.9 billion.</p>
+                        
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- Section 3: Household Preferences -->
         <section id="section3">
             <h2>Section 3: Household Preferences</h2>
-            <p>Examining which species dominate Australian households and comparing total animal populations to owning homes.</p>
+            <p>Which pets do Australian households own most?<br>Compare ownership rates and total animal numbers.</p>
 
-            <div id="lollipop_chart" class="chart-container"></div>
-            <div class="chart-annotation">
-                <strong>Penetration Leaderboard:</strong> Dogs are shown as Australia's top companion animal, found in nearly 50% of all households, followed closely by cats.
-            </div>
+            <div class="chart-grid">
+                <article class="figure">
+                    <p class="fig-label">Figure 03 &middot; Lollipop chart</p>
+                    <h3 class="fig-title">Household Pet Penetration Rates (%)</h3>
+                    <p class="fig-sub">Ranked from highest to lowest household ownership</p>
+                    <div id="lollipop_chart" class="chart-container"></div>
+                    <div class="insights">
+                        <h4>Dogs are the top pet</h4>
+                        <p>Found in nearly <span class="key">50%</span> of households.</p>
+                        <h4>Cats come second</h4>
+                        <p>About one in three households (34%).</p>
+                        <h4>Other pets trail far behind</h4>
+                        <p>Fish (11.5%) and birds (9.5%) are next.</p>
+                    </div>
+                </article>
 
-            <div id="dotplot_households" class="chart-container"></div>
-            <div class="chart-annotation">
-                <strong>Household Ownership:</strong> Isolating owning households onto a Cleveland dot plot displays exact household numbers clearly without compression from large pet populations.
-            </div>
+                <article class="figure">
+                    <p class="fig-label">Figure 04 &middot; Dot plot</p>
+                    <h3 class="fig-title">Australian Households Owning Pets</h3>
+                    <p class="fig-sub">Ranked by total owning households (millions)</p>
+                    <div id="dotplot_households" class="chart-container"></div>
+                    <div class="insights">
+                        <h4>5.2 million homes own a dog</h4>
+                        <p>About 3.6 million own a cat.</p>
+                        <h4>Fish come third</h4>
+                        <p>1.2 million households keep fish.</p>
+                        <div class="callout">
+                            <span class="label">Note</span>
+                            <p>This counts households, not animals.</p>
+                        </div>
+                    </div>
+                </article>
 
-            <div id="vertical_bar" class="chart-container"></div>
-            <div class="chart-annotation">
-                <strong>Population Ranking:</strong> Comparing total animal populations across a common baseline clearly highlights the massive volume of fish and mammalian pets without scale distortion.
+                <article class="figure full">
+                    <p class="fig-label">Figure 05 &middot; Bar chart</p>
+                    <h3 class="fig-title">Total Pet Populations in Australia</h3>
+                    <p class="lede">About <strong>12.1 million</strong> fish, more than any other pet. Dogs and cats follow, with 7.4 million dogs and 5.8 million cats. Fish owners keep many: about 10 fish per fish-owning household.</p>
+                    <div id="vertical_bar" class="chart-container"></div>
+                    <p class="chart-note">Ranked from highest to lowest total animal count (millions).</p>
+                </article>
             </div>
         </section>
 
-        <!-- Section 4: Geographic & Demographic Distribution -->
         <section id="section4">
-            <h2>Section 4: Geographic Distribution & Demographics</h2>
-            <p>Comparing how RSPCA shelters in each state and territory take in and rehome animals, and which Australians own pets.</p>
+            <h2>Section 4: Geographic Distribution &amp; Demographics</h2>
+            <p>How do RSPCA shelters in each state compare?<br>And which Australians own pets?</p>
 
-            <div id="map1" class="chart-container"></div>
-            <div class="chart-annotation">
-                <strong>Share rehomed:</strong> The ACT (69%), NT (66%) and Tasmania (66%) rehome the biggest share of the animals they receive, while Western Australia (50%) and NSW (52%) rehome the smallest. Their figures exclude pound animals, so compare them with care.
-            </div>
+            <div class="chart-grid">
+                <article class="figure">
+                    <p class="fig-label">Figure 06 &middot; Choropleth map</p>
+                    <h3 class="fig-title">The ACT, NT and Tasmania Rehome the Biggest Share of the Animals They Receive</h3>
+                    <p class="fig-sub">Share of dogs and cats received by RSPCA that were rehomed, 2024-25. ACT, NT and Tasmania figures exclude pound animals, so compare them with care.</p>
+                    <div id="map1" class="chart-container"></div>
+                    <div class="insights">
+                        <h4>Territories rehome the most</h4>
+                        <p>ACT (<span class="key">69%</span>), NT (66%) and Tasmania (66%).</p>
+                        <h4>WA and NSW rehome the least</h4>
+                        <p>Western Australia (50%) and NSW (52%).</p>
+                       
+                    </div>
+                </article>
 
-            <div id="map2" class="chart-container"></div>
-            <div class="chart-annotation">
-                <strong>Absolute volume:</strong> Queensland (14,420) and NSW (9,941) receive the most animals in RSPCA shelters, but counts mostly follow population, so the next map adjusts for it. ACT, NT and Tasmania figures exclude pound animals.
-            </div>
+                <article class="figure">
+                    <p class="fig-label">Figure 07 &middot; Proportional symbol map</p>
+                    <h3 class="fig-title">Queensland and NSW Take In the Most Animals</h3>
+                    <p class="fig-sub">Dogs and cats received by RSPCA shelters, 2024-25. Triangle area shows the number of animals. ACT, NT and Tasmania figures exclude pound animals.</p>
+                    <div id="map2" class="chart-container"></div>
+                    <div class="insights">
+                        <h4>Queensland takes in the most</h4>
+                        <p><span class="key">14,420</span> animals, ahead of NSW (9,941).</p>
+                        <h4>Population is not the whole story</h4>
+                        <p>Queensland has fewer people than NSW.</p>
+                        
+                    </div>
+                </article>
 
-            <div id="map3" class="chart-container"></div>
-            <div class="chart-annotation">
-                <strong>Intake per person:</strong> Circle size shows population and colour shows animals received per 100,000 people. The ACT (522) takes in nearly twice as many as any other state, followed by SA (280) and QLD (254).
-            </div>
+                <article class="figure">
+                    <p class="fig-label">Figure 08 &middot; Dorling cartogram</p>
+                    <h3 class="fig-title">Per Person, the ACT Takes In Nearly Twice as Many Animals as Any Other State</h3>
+                    <p class="fig-sub">Circle area = population. Colour = dogs and cats received by RSPCA per 100,000 residents, 2024-25.</p>
+                    <div id="map3" class="chart-container"></div>
+                    <div class="insights">
+                        <h4>The ACT stands out</h4>
+                        <p><span class="key">522</span> animals per 100,000 people, nearly double any other state.</p>
+                        <h4>SA and Queensland follow</h4>
+                        <p>280 and 254 per 100,000 people.</p>
+    
+                    </div>
+                </article>
 
-            <div id="heatmap_owner" class="chart-container"></div>
-            <div class="chart-annotation">
-                <strong>Who owns pets:</strong> Dog owners are 8.7 points more likely than non-owners to own their home, while cat owners barely differ (−1.1). Owners of any pet are also less likely to be single, separated, divorced or widowed.
+                <article class="figure">
+                    <p class="fig-label">Figure 09 &middot; Heatmap</p>
+                    <h3 class="fig-title">Dog Owners Are Far More Likely to Own Their Home, but Cat Owners Barely Differ</h3>
+                    <p class="fig-sub">Gap between owners and non-owners, in percentage points (owners minus non-owners). Indigo = more common among owners, gold = less common.</p>
+                    <div id="heatmap_owner" class="chart-container"></div>
+                    <div class="insights">
+                        <h4>Dog owners more often own homes</h4>
+                        <p><span class="key">8.7 percentage points</span> more likely than non-owners.</p>
+                        <h4>Cat owners barely differ</h4>
+                        <p>Only −1.1 percentage points.</p>
+                    </div>
+                </article>
             </div>
         </section>
 
-        <!-- Section 5: Conclusion -->
         <section id="section5">
             <h2>Section 5: Conclusion</h2>
             <p>Summarizing the deep emotional bonds Australians share with their companion animals against modern economic realities.</p>
 
-            <div id="conclusion_chart" class="chart-container"></div>
+            <div id="conclusion_chart" class="chart-container single"></div>
             <div class="chart-annotation">
-                <strong>The 2022–2025 Shift:</strong> Although pet ownership remains strong, rising financial costs have become the main reason households hesitate about getting another pet.
+                Although pet ownership remains strong, rising financial costs have become the main reason households hesitate about getting another pet.
             </div>
         </section>
 
@@ -126,7 +208,7 @@
                 <li>Taniguchi, Y., Ikeuchi, T., &amp; Yong, J. (2024). Dog, cat, bird, fish, and other pet ownership and mortality: Evidence from the HILDA cohort. <em>PLOS ONE, 19</em>(8), e0305546 [PDF]. https://pmc.ncbi.nlm.nih.gov/articles/PMC11324118/pdf/pone.0305546.pdf</li>
                 <li>Hogan, R. (n.d.). <em>Australian States Map</em> [GeoJSON data set]. GitHub. https://github.com/rowanhogan/australian-states</li>
             </ul>
-         </footer>    
+        </footer>
 
     </div>
 

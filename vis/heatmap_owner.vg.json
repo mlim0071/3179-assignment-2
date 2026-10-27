@@ -1,19 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Diverging heatmap: percentage-point gap between pet owners and non-owners. Source: Taniguchi, Ikeuchi and Yong (2024), PLOS ONE, Table 1 (HILDA 2018), PMC11324118. Gaps are calculated.",
-  "title": {
-    "text": "Dog Owners Are Far More Likely to Own Their Home, but Cat Owners Barely Differ",
-    "subtitle": [
-      "Gap between owners and non-owners, in percentage points (owners minus non-owners).",
-      "Blue = more common among owners, orange = less common."
-    ]
-  },
-  "width": 420,
-  "height": 340,
-  "data": {
-    "url": "data/owner.csv",
-    "format": {"type": "csv", "parse": {"non_owners_pct": "number", "owners_pct": "number"}}
-  },
+  "width": 300,
+  "height": 300,
+  "data": {"url": "data/owner.csv", "format": {"type": "csv", "parse": {"non_owners_pct": "number", "owners_pct": "number"}}},
   "transform": [{"calculate": "round((datum.owners_pct - datum.non_owners_pct) * 10) / 10", "as": "gap"}],
   "encoding": {
     "x": {
@@ -47,7 +37,7 @@
           "type": "quantitative",
           "title": "Gap (points)",
           "scale": {"domain": [-10, 10], "range": ["#b8860b", "#f7f7f7", "#3b3b98"], "clamp": true},
-          "legend": {"gradientLength": 200, "format": "+d"}
+          "legend": {"orient": "bottom", "direction": "horizontal", "gradientLength": 200, "gradientThickness": 12, "format": "+d"}
         },
         "tooltip": [
           {"field": "characteristic", "title": "Characteristic"},
@@ -63,7 +53,7 @@
       "mark": {"type": "text", "fontSize": 14, "fontWeight": "bold"},
       "encoding": {
         "text": {"field": "gap", "format": "+.1f"},
-        "color": {"condition": {"test": "abs(datum.gap) >= 6", "value": "#ffffff"}, "value": "#1f2937"}
+        "color": {"condition": {"test": "abs(datum.gap) >= 7", "value": "#ffffff"}, "value": "#1f2937"}
       }
     },
     {
@@ -72,25 +62,15 @@
     },
     {
       "data": {"values": [{"x": 0}]},
-      "transform": [
-        {
-          "calculate": "['Dog owners: 72.8% own their home,', 'against 64.1% of people without a dog']",
-          "as": "note"
-        }
-      ],
+      "transform": [{"calculate": "['Dog owners: 72.8% own their home,', 'against 64.1% of people without a dog']", "as": "note"}],
       "mark": {"type": "text", "align": "left", "fontSize": 12, "fontStyle": "italic", "color": "#475569", "lineBreak": "\n"},
-      "encoding": {"x": {"value": 0}, "y": {"value": 375}, "text": {"field": "note"}}
+      "encoding": {"x": {"value": 0}, "y": {"value": 395}, "text": {"field": "note"}}
     }
   ],
-  "padding": {"top": 20, "bottom": 10, "left": 10, "right": 10},
+  "padding": {"top": 10, "bottom": 10, "left": 10, "right": 10},
   "config": {
     "font": "Space Grotesk",
     "view": {"stroke": null},
-    "title": {
-      "font": "Playfair Display", "fontSize": 20, "fontWeight": 700, "anchor": "middle",
-      "subtitleFont": "Space Grotesk", "subtitleFontSize": 13, "subtitleColor": "#334155",
-      "subtitleLineHeight": 17, "subtitlePadding": 8
-    },
     "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10, "labelColor": "#1f2937", "titleFontWeight": 600},
     "legend": {"labelFontSize": 13, "titleFontSize": 13, "labelColor": "#1f2937", "titleFontWeight": 600}
   }

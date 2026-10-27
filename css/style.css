@@ -4,31 +4,32 @@
 :root {
   --bg-color: #c8c7bb;
   --card-bg: #ffffff;
+  --ink: #0f172a;          /* headings, key numbers */
   --text-main: #1e293b;
-  --text-muted: #64748b;
+  --text-soft: #334155;    /* body text in figures */
+  --text-muted: #64748b;   /* labels, footnotes */
   --accent-blue: #2563eb;
+  --accent-navy: #1c1b3a;
   --border-color: #e2e8f0;
 }
 
 body {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;   /* every element inherits this */
   background-color: var(--bg-color);
   color: var(--text-main);
   margin: 0;
-  padding: 0;
   line-height: 1.6;
 }
 
 #page-container {
-  max-width: 900px;            
+  max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
 }
 
-/* Serif for Titles */
-h1, h2, h3, header h1 {
+h1, h2, h3 {
   font-family: 'Playfair Display', serif;
-  color: #0f172a;
+  color: var(--ink);
 }
 
 header {
@@ -38,66 +39,148 @@ header {
   border-bottom: 2px solid var(--border-color);
 }
 
-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
+header h1 { font-size: 2.5rem; margin-bottom: 10px; }
 
 header .subtitle {
-  font-family: 'Space Grotesk', sans-serif;
   font-size: 1.15rem;
   color: var(--text-muted);
   max-width: 650px;
   margin: 0 auto;
 }
 
-section {
+/* Section cards (footer shares the same card look) */
+section, footer {
   background: var(--card-bg);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
+  padding: 25px;
+}
+
+section {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   margin-bottom: 40px;
-  padding: 25px;
-  border: 1px solid var(--border-color);
 }
 
-section h2 {
-  font-size: 1.75rem;
-  margin-top: 0;
-  margin-bottom: 12px;
-  letter-spacing: -0.5px;
-}
+section h2 { font-size: 1.75rem; margin: 0 0 12px; letter-spacing: -0.5px; }
 
 section > p {
-  font-family: 'Space Grotesk', sans-serif;
   color: var(--text-muted);
   font-size: 1.05rem;
   margin-bottom: 8px;
 }
 
-.chart-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 20px auto 0;        
-    width: 100%;
+/* Two figures side by side; stacks on narrow screens */
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px 40px;
+  align-items: start;
+  margin-top: 20px;
 }
 
-/* Chart explanation and annotation callout boxes */
-.chart-annotation {
-  font-family: 'Space Grotesk', sans-serif;
-  background: #f1f5f9;
-  border-left: 4px solid var(--accent-blue);
-  padding: 14px 18px;
-  margin-top: 0px;             
-  font-size: 0.95rem;
-  color: #334155;
-  border-radius: 0 6px 6px 0;
+@media (max-width: 1200px) {
+  .chart-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* One figure: label, headline, subtitle, chart, insights */
+.figure {
+  margin: 0;
+  padding-top: 20px;
+  border-top: 1px solid #cbd5e1;
+  min-width: 0;
+}
+
+.figure.full { grid-column: 1 / -1; }
+
+.fig-label {
+  margin: 0 0 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.fig-title { margin: 0 0 10px; font-size: 1.45rem; line-height: 1.22; }
+
+.fig-sub {
+  margin: 0 0 14px;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--text-soft);
+}
+
+.lede { margin: 0 0 14px; max-width: 820px; font-size: 1.05rem; }
+
+.chart-container { margin: 0 0 16px; }
+
+.chart-note { margin: 0; font-size: 0.88rem; color: var(--text-muted); }
+
+/* Sections 1 and 5: one centred chart with a takeaway box underneath */
+.chart-container.single {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto 0;
   width: 100%;
+}
+
+/* Headed insights under each chart */
+.insights h4 {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 2px;
+  line-height: 1.35;
+}
+
+.insights p {
+  font-size: 0.98rem;
+  color: var(--text-soft);
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
+/* Tinted boxes: takeaway (blue bar) and caveat note (navy bar) */
+.chart-annotation, .callout {
+  border-radius: 0 6px 6px 0;
   box-sizing: border-box;
 }
 
-.chart-annotation strong {
-  color: #0f172a;
+.chart-annotation {
+  background: #f1f5f9;
+  border-left: 4px solid var(--accent-blue);
+  padding: 14px 18px;
+  margin-top: 8px;
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  width: 100%;
 }
+
+.callout {
+  background: #e9ebfb;
+  border-left: 4px solid var(--accent-navy);
+  padding: 10px 14px;
+  margin-top: 4px;
+}
+
+.callout .label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #475569;
+  margin-bottom: 2px;
+}
+
+.callout p { margin: 0; font-size: 0.93rem; }
+
+.key, .lede strong { font-weight: 700; color: var(--ink); }
+
+/* Author, references and notes */
+footer { font-size: 0.9rem; color: var(--text-soft); }
+footer .author-line { margin-top: 0; }
+footer .sep { color: var(--text-muted); margin: 0 8px; }
+footer ul { padding-left: 20px; word-break: break-word; }
+footer li { margin-bottom: 8px; }

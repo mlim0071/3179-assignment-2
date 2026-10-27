@@ -1,15 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Dorling cartogram: each state is a circle sized by population (ABS, June 2025) and coloured by animals received by RSPCA per 100,000 residents (RSPCA National Statistics 2024-25). Circle positions are computed from state centre points with an overlap-removal step (columns x, y, radius in data/state_cartogram.csv).",
-  "title": {
-    "text": "Per Person, the ACT Takes In Nearly Twice as Many Animals as Any Other State",
-    "subtitle": [
-      "Circle area = population. Colour = dogs and cats received by RSPCA per 100,000",
-      "residents, 2024-25."
-    ]
-  },
-  "width": 550,
-  "height": 538,
+  "width": 480,
+  "height": 470,
   "data": {
     "url": "data/state_cartogram.csv",
     "format": {
@@ -51,7 +44,7 @@
             "domain": ["Under 100", "100 to 199", "200 to 299", "300 or more"],
             "range": ["#edf8e9", "#a1d99b", "#2e9e55", "#005a32"]
           },
-          "legend": {"orient": "right", "labelFontSize": 13, "titleFontSize": 13, "symbolType": "circle", "symbolSize": 260}
+          "legend": {"orient": "bottom", "direction": "horizontal", "labelFontSize": 13, "titleFontSize": 13, "symbolType": "circle", "symbolSize": 260}
         },
         "tooltip": [
           {"field": "state", "title": "State"},
@@ -83,7 +76,10 @@
     },
     {
       "description": "NT label on the left so it does not run into Queensland",
-      "transform": [{"filter": "datum.state_code == 'NT'"}, {"calculate": "datum.x - datum.radius - 5", "as": "x"}],
+      "transform": [
+        {"filter": "datum.state_code == 'NT'"},
+        {"calculate": "datum.x - datum.radius - 5", "as": "x"}
+      ],
       "mark": {"type": "text", "fontSize": 13, "fontWeight": "bold", "align": "right", "color": "#1f2937"},
       "encoding": {"text": {"field": "state_code"}}
     },
@@ -92,7 +88,7 @@
       "data": {"values": [{"x": 10, "y": 385}]},
       "transform": [
         {
-          "calculate": "['ACT: 522 per 100,000, nearly double', 'the next highest (SA, 280)', '(ACT, NT, TAS exclude pound animals)']",
+          "calculate": "['ACT: 522 per 100,000, nearly double','the next highest (SA, 280)','(ACT, NT, TAS figures exclude pound animals)']",
           "as": "note"
         }
       ],
@@ -103,11 +99,6 @@
   "config": {
     "font": "Space Grotesk",
     "view": {"stroke": null},
-    "title": {
-      "font": "Playfair Display", "fontSize": 20, "fontWeight": 700, "anchor": "middle",
-      "subtitleFont": "Space Grotesk", "subtitleFontSize": 13, "subtitleColor": "#334155",
-      "subtitleLineHeight": 17, "subtitlePadding": 8
-    },
     "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10, "labelColor": "#1f2937", "titleFontWeight": 600},
     "legend": {"labelFontSize": 13, "titleFontSize": 13, "labelColor": "#1f2937", "titleFontWeight": 600}
   },
@@ -116,8 +107,8 @@
       "calculate": "datum.received_per_100k >= 300 ? '300 or more' : datum.received_per_100k >= 200 ? '200 to 299' : datum.received_per_100k >= 100 ? '100 to 199' : 'Under 100'",
       "as": "band"
     },
-    {"calculate": "datum.area * 1.5625", "as": "area_px"}
+    {"calculate": "datum.area * 1.19", "as": "area_px"}
   ],
-  "projection": {"type": "mercator", "scale": 580, "center": [135, -30], "translate": [250, 288]},
-  "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10}
+  "projection": {"type": "mercator", "scale": 506, "center": [135, -30], "translate": [218.2, 251.3]},
+  "padding": {"top": 10, "bottom": 10, "left": 10, "right": 10}
 }

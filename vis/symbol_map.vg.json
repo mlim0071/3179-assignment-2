@@ -1,15 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Proportional symbol map: dogs and cats received by RSPCA shelters per state, 2024-25, shown as triangles sized by number of animals. Source: RSPCA Australia, National Statistics 2024-25.",
-  "title": {
-    "text": "Queensland and NSW Take In the Most Animals",
-    "subtitle": [
-      "Dogs and cats received by RSPCA shelters, 2024-25. Triangle area shows the number of animals.",
-      "ACT, NT and Tasmania figures exclude pound animals."
-    ]
-  },
-  "width": 680,
-  "height": 500,
+  "width": 440,
+  "height": 340,
   "projection": {"type": "mercator"},
   "layer": [
     {
@@ -32,7 +25,7 @@
           }
         }
       },
-      "mark": {"type": "point", "shape": "triangle-up", "filled": true, "color": "#d55e00", "opacity": 0.92, "stroke": "#ffffff", "strokeWidth": 1.5},
+      "mark": {"type": "point", "shape": "triangle-up", "filled": true, "color": "#b5338a", "opacity": 0.92, "stroke": "#ffffff", "strokeWidth": 1.5},
       "encoding": {
         "longitude": {"field": "symbol_lon", "type": "quantitative"},
         "latitude": {"field": "symbol_lat", "type": "quantitative"},
@@ -42,13 +35,14 @@
           "scale": {"domain": [0, 15000], "range": [0, 9000], "type": "sqrt", "zero": true},
           "legend": {
             "title": "Animals received",
-            "orient": "right",
+            "orient": "bottom",
+            "direction": "horizontal",
             "values": [1000, 5000, 10000, 15000],
             "format": ",.0f",
-            "symbolFillColor": "#d55e00",
+            "symbolFillColor": "#b5338a",
+            "symbolType": "triangle-up",
             "labelFontSize": 13,
-            "titleFontSize": 13,
-            "symbolType": "triangle-up"
+            "titleFontSize": 13
           }
         },
         "tooltip": [
@@ -61,10 +55,7 @@
     },
     {
       "description": "State code inside each triangle",
-      "data": {
-        "url": "data/animals_received.csv",
-        "format": {"type": "csv", "parse": {"symbol_lon": "number", "symbol_lat": "number"}}
-      },
+      "data": {"url": "data/animals_received.csv", "format": {"type": "csv", "parse": {"symbol_lon": "number", "symbol_lat": "number"}}},
       "mark": {"type": "text", "fontSize": 12, "fontWeight": "bold", "color": "#ffffff", "dy": 7},
       "encoding": {
         "longitude": {"field": "symbol_lon", "type": "quantitative"},
@@ -76,13 +67,8 @@
   "config": {
     "font": "Space Grotesk",
     "view": {"stroke": null},
-    "title": {
-      "font": "Playfair Display", "fontSize": 20, "fontWeight": 700, "anchor": "middle",
-      "subtitleFont": "Space Grotesk", "subtitleFontSize": 13, "subtitleColor": "#334155",
-      "subtitleLineHeight": 17, "subtitlePadding": 8
-    },
     "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10, "labelColor": "#1f2937", "titleFontWeight": 600},
     "legend": {"labelFontSize": 13, "titleFontSize": 13, "labelColor": "#1f2937", "titleFontWeight": 600}
   },
-  "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10}
+  "padding": {"top": 10, "bottom": 10, "left": 10, "right": 10}
 }
