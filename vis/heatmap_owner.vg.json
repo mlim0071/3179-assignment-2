@@ -46,7 +46,7 @@
           "field": "gap",
           "type": "quantitative",
           "title": "Gap (points)",
-          "scale": {"domain": [-10, 10], "range": ["#d55e00", "#f7f7f7", "#0072b2"], "clamp": true},
+          "scale": {"domain": [-10, 10], "range": ["#b8860b", "#f7f7f7", "#3b3b98"], "clamp": true},
           "legend": {"gradientLength": 200, "format": "+d"}
         },
         "tooltip": [

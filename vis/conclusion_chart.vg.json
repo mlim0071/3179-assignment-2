@@ -34,7 +34,7 @@
     "color": {
       "field": "theme",
       "type": "nominal",
-      "scale": {"domain": ["Pet ownership", "Cost pressure"], "range": ["#0072b2", "#d55e00"]},
+      "scale": {"domain": ["Pet ownership", "Cost pressure"], "range": ["#1f2937", "#8c510a"]},
       "legend": {"title": null, "orient": "bottom", "symbolType": "stroke", "labelFontSize": 12}
     }
   },

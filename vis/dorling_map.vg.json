@@ -49,7 +49,7 @@
           "title": ["Animals received", "per 100,000 people"],
           "scale": {
             "domain": ["Under 100", "100 to 199", "200 to 299", "300 or more"],
-            "range": ["#efedf5", "#bcbddc", "#807dba", "#54278f"]
+            "range": ["#edf8e9", "#a1d99b", "#2e9e55", "#005a32"]
           },
           "legend": {"orient": "right", "labelFontSize": 13, "titleFontSize": 13, "symbolType": "circle", "symbolSize": 260}
         },
