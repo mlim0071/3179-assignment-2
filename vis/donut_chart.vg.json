@@ -1,10 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Donut chart showing Australian household pet ownership penetration.",
-  "title": {
-    "text": "Australian Pet Ownership Share",
-    "subtitle": "Nearly 73% of households own at least one pet"
-  },
   "data": {"url": "data/pet_ownership_share.csv"},
   "layer": [
     {
@@ -14,8 +10,8 @@
         "color": {
           "field": "category",
           "type": "nominal",
-          "scale": {"domain": ["Pet Owning Households", "Non-Pet Owning Households"], "range": ["#3182ce", "#e2e8f0"]},
-          "legend": {"title": "Household Status", "orient": "bottom", "direction": "vertical", "labelLimit": 400}
+          "scale": {"domain": ["Pet Owning Households", "Non-Pet Owning Households"], "range": ["#1f2937", "#e2e8f0"]},
+          "legend": {"title": "Household Status", "orient": "bottom", "direction": "vertical", "labelLimit": 260}
         },
         "tooltip": [
           {"field": "category", "type": "nominal", "title": "Group"},
@@ -24,22 +20,17 @@
       }
     },
     {
-      "mark": {"type": "text", "align": "center", "baseline": "middle", "fontSize": 34, "fontWeight": "bold", "fill": "#1a365d"},
+      "mark": {"type": "text", "align": "center", "baseline": "middle", "fontSize": 34, "fontWeight": "bold", "fill": "#1f2937"},
       "encoding": {"text": {"value": "73%"}}
     }
   ],
   "config": {
     "font": "Space Grotesk",
     "view": {"stroke": null},
-    "title": {
-      "font": "Playfair Display", "fontSize": 20, "fontWeight": 700, "anchor": "middle",
-      "subtitleFont": "Space Grotesk", "subtitleFontSize": 13, "subtitleColor": "#334155",
-      "subtitleLineHeight": 17, "subtitlePadding": 8
-    },
     "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10, "labelColor": "#1f2937", "titleFontWeight": 600},
     "legend": {"labelFontSize": 13, "titleFontSize": 13, "labelColor": "#1f2937", "titleFontWeight": 600}
   },
-  "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10},
-  "width": 400,
-  "height": 380
+  "padding": {"top": 10, "bottom": 10, "left": 10, "right": 10},
+  "width": 300,
+  "height": 300
 }

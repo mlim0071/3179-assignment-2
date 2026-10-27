@@ -48,7 +48,7 @@ header .subtitle {
   margin: 0 auto;
 }
 
-/* Section cards (footer shares the same card look) */
+/* White cards: sections and footer */
 section, footer {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
@@ -69,7 +69,6 @@ section > p {
   margin-bottom: 8px;
 }
 
-/* Two figures side by side; stacks on narrow screens */
 .chart-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -82,7 +81,7 @@ section > p {
   .chart-grid { grid-template-columns: minmax(0, 1fr); }
 }
 
-/* One figure: label, headline, subtitle, chart, insights */
+
 .figure {
   margin: 0;
   padding-top: 20px;
@@ -125,22 +124,6 @@ section > p {
   width: 100%;
 }
 
-/* Headed insights under each chart */
-.insights h4 {
-  font-size: 1.02rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin: 0 0 2px;
-  line-height: 1.35;
-}
-
-.insights p {
-  font-size: 0.98rem;
-  color: var(--text-soft);
-  line-height: 1.5;
-  margin: 0 0 12px;
-}
-
 /* Tinted boxes: takeaway (blue bar) and caveat note (navy bar) */
 .chart-annotation, .callout {
   border-radius: 0 6px 6px 0;
@@ -174,11 +157,25 @@ section > p {
   margin-bottom: 2px;
 }
 
+.insights h4 {
+  font-size: 1.02rem;
+  color: var(--ink);
+  margin: 0 0 2px;
+  line-height: 1.35;
+}
+
+.insights p {
+  font-size: 0.98rem;
+  color: var(--text-soft);
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+
 .callout p { margin: 0; font-size: 0.93rem; }
 
 .key, .lede strong { font-weight: 700; color: var(--ink); }
 
-/* Author, references and notes */
+/* Author, references and AI acknowledgement */
 footer { font-size: 0.9rem; color: var(--text-soft); }
 footer .author-line { margin-top: 0; }
 footer .sep { color: var(--text-muted); margin: 0 8px; }
