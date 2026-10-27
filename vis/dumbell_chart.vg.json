@@ -60,14 +60,6 @@
         "x": {"field": "y2025", "type": "quantitative", "scale": {"domain": [-3, 28], "nice": false, "zero": false}},
         "text": {"field": "label"}
       }
-    },
-    {
-      "description": "Annotation explaining how the 2022 'Other pets' value was derived",
-      "data": {"values": [{"pet_type": "Other pets", "x": 10}]},
-      "mark": {"type": "text", "align": "left", "fontSize": 13, "fontStyle": "italic", "color": "#475569"},
-      "encoding": {
-        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [-3, 28], "nice": false, "zero": false}}
-      }
     }
   ],
   "padding": {"top": 10, "bottom": 10, "left": 10, "right": 10},
