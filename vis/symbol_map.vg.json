@@ -1,0 +1,82 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Proportional symbol map: dogs and cats received by RSPCA shelters per state, 2024-25. Source: RSPCA Australia, National Statistics 2024-25.",
+  "title": {
+    "text": "Queensland and NSW Take In the Most Animals",
+    "subtitle": [
+      "Dogs and cats received by RSPCA shelters, 2024-25. Circle area shows the number of animals.",
+      "ACT, NT and Tasmania figures exclude pound animals."
+    ]
+  },
+  "width": 680,
+  "height": 500,
+  "projection": {"type": "mercator"},
+  "layer": [
+    {
+      "description": "Grey state outlines",
+      "data": {"url": "data/australia_states.geojson", "format": {"type": "json", "property": "features"}},
+      "mark": {"type": "geoshape", "fill": "#e2e8f0", "stroke": "#ffffff", "strokeWidth": 0.8}
+    },
+    {
+      "description": "Circles sized by animals received",
+      "data": {
+        "url": "data/animals_received.csv",
+        "format": {
+          "type": "csv",
+          "parse": {
+            "total_received": "number",
+            "dogs_received": "number",
+            "cats_received": "number",
+            "symbol_lon": "number",
+            "symbol_lat": "number"
+          }
+        }
+      },
+      "mark": {"type": "circle", "color": "#d55e00", "opacity": 0.92, "stroke": "#ffffff", "strokeWidth": 1.5},
+      "encoding": {
+        "longitude": {"field": "symbol_lon", "type": "quantitative"},
+        "latitude": {"field": "symbol_lat", "type": "quantitative"},
+        "size": {
+          "field": "total_received",
+          "type": "quantitative",
+          "scale": {"domain": [0, 15000], "range": [0, 6000], "type": "sqrt", "zero": true},
+          "legend": {
+            "title": "Animals received",
+            "orient": "right",
+            "values": [1000, 5000, 10000, 15000],
+            "format": ",.0f",
+            "symbolFillColor": "#d55e00",
+            "labelFontSize": 13,
+            "titleFontSize": 13
+          }
+        },
+        "tooltip": [
+          {"field": "state", "title": "State"},
+          {"field": "dogs_received", "format": ",", "title": "Dogs"},
+          {"field": "cats_received", "format": ",", "title": "Cats"},
+          {"field": "total_received", "format": ",", "title": "Total"}
+        ]
+      }
+    },
+    {
+      "description": "State name inside each circle",
+      "data": {
+        "url": "data/animals_received.csv",
+        "format": {"type": "csv", "parse": {"symbol_lon": "number", "symbol_lat": "number"}}
+      },
+      "mark": {"type": "text", "fontSize": 13, "fontWeight": "bold", "color": "#ffffff"},
+      "encoding": {
+        "longitude": {"field": "symbol_lon", "type": "quantitative"},
+        "latitude": {"field": "symbol_lat", "type": "quantitative"},
+        "text": {"field": "state_code"}
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": null},
+    "title": {"fontSize": 18, "subtitleFontSize": 13},
+    "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10},
+    "legend": {"labelFontSize": 13, "titleFontSize": 13}
+  },
+  "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10}
+}

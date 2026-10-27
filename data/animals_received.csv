@@ -1,0 +1,9 @@
+state,state_code,dogs_received,cats_received,total_received,animals_rehomed,pct_rehomed,symbol_lon,symbol_lat
+New South Wales,NSW,3320,6621,9941,5213,52.4,146.9,-32.2
+Victoria,VIC,2015,3830,5845,3392,58.0,144.8,-36.9
+Queensland,QLD,6401,8019,14420,7914,54.9,144.5,-22.5
+South Australia,SA,1963,3355,5318,3058,57.5,135.0,-30.0
+Western Australia,WA,975,920,1895,951,50.2,122.0,-25.5
+Tasmania,TAS,379,700,1079,708,65.6,146.6,-42.0
+Northern Territory,NT,204,259,463,305,65.9,133.4,-19.5
+Australian Capital Territory,ACT,595,1935,2530,1743,68.9,153.0,-35.6

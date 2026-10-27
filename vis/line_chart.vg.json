@@ -1,83 +1,68 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Multi-line chart tracking household penetration trends across historical survey waves.",
+  "description": "Line chart of household pet ownership 2016-2025. Source: AMA, Pets in Australia 2025.",
   "title": {
-    "text": "Household Pet Penetration Trends Over Time",
-    "subtitle": "Comparing overall pet ownership alongside dog and cat penetration rates (%)",
-    "anchor": "start",
-    "offset": 15
+    "text": "Pet Ownership Surged During the Pandemic and Kept Rising",
+    "subtitle": "Share of Australian households owning each kind of pet, by survey year"
   },
-  "data": {
-    "url": "data/pet_trends.csv"
-  },
-  "width": 450,
-  "height": 280,
+  "width": 720,
+  "height": 400,
+  "data": {"url": "data/pet_trends.csv"},
   "encoding": {
     "x": {
       "field": "year",
-      "type": "nominal",
-      "title": "Survey Year",
-      "axis": {"labelAngle": 0}
+      "type": "quantitative",
+      "title": "Survey year",
+      "scale": {"domain": [2015.5, 2027.6], "nice": false, "zero": false},
+      "axis": {"values": [2016, 2019, 2022, 2025], "format": "d", "grid": false}
     },
     "y": {
       "field": "pct",
       "type": "quantitative",
-      "title": "Household Penetration (%)",
-      "scale": {"domain": [0, 100]},
-      "axis": {
-        "format": "d",
-        "labelExpr": "datum.value + '%'"
-      }
+      "title": "Households with this pet (%)",
+      "scale": {"domain": [0, 85]},
+      "axis": {"values": [0, 20, 40, 60, 80]}
     },
     "color": {
       "field": "group",
       "type": "nominal",
-      "title": "Category",
-      "scale": {
-        "domain": ["Any pet", "Dogs", "Cats"],
-        "range": ["#3182ce", "#1f4e78", "#d97706"]
-      }
+      "legend": null,
+      "scale": {"domain": ["Any pet", "Dogs", "Cats"], "range": ["#1f2937", "#0072b2", "#d55e00"]}
     }
   },
   "layer": [
     {
-      "mark": {
-        "type": "line",
-        "strokeWidth": 3
-      }
+      "description": "Shaded band for the pandemic years (2019 to 2022)",
+      "data": {"values": [{"year": 2019, "year2": 2022}]},
+      "mark": {"type": "rect", "color": "#cbd5e1", "opacity": 0.35},
+      "encoding": {"x2": {"field": "year2"}, "y": null, "color": null}
     },
     {
-      "mark": {
-        "type": "point",
-        "filled": true,
-        "size": 60
-      }
-    },
-    {
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "baseline": "bottom",
-        "dy": -10,
-        "fontSize": 11,
-        "fontWeight": "bold"
-      },
+      "description": "Lines with points",
+      "mark": {"type": "line", "strokeWidth": 3.5, "point": {"filled": true, "size": 90}},
       "encoding": {
-        "text": {
-          "field": "pct",
-          "type": "quantitative",
-          "format": ".0f"
-        },
-        "color": {"value": "#1e293b"},
         "tooltip": [
-          {"field": "year", "type": "nominal", "title": "Year"},
-          {"field": "group", "type": "nominal", "title": "Category"},
-          {"field": "pct", "type": "quantitative", "title": "Penetration Rate (%)"}
+          {"field": "group", "title": "Pet"},
+          {"field": "year", "type": "ordinal", "title": "Survey year"},
+          {"field": "pct", "title": "Households (%)"}
         ]
       }
+    },
+    {
+      "description": "Label at the end of each line",
+      "transform": [
+        {"filter": "datum.year == 2025"},
+        {"calculate": "datum.group + '  ' + datum.pct + '%'", "as": "label"}
+      ],
+      "mark": {"type": "text", "align": "left", "dx": 10, "fontSize": 14, "fontWeight": "bold"},
+      "encoding": {"text": {"field": "label"}}
     }
   ],
   "config": {
-    "view": {"stroke": null}
-  }
+    "view": {"stroke": null},
+    "title": {"fontSize": 18, "subtitleFontSize": 13},
+    "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10},
+    "legend": {"labelFontSize": 13, "titleFontSize": 13}
+  },
+  "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10}
 }

@@ -1,0 +1,128 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Dumbbell chart: estimated pet spending in 2022 (recalculated by AMA) vs 2025, by pet type. Source: AMA, Pets in Australia 2025, Methodology note 1.",
+  "title": {
+    "text": "Spending on Pets Is Up About 35% in Three Years, Led by Dogs",
+    "subtitle": [
+      "Estimated annual spending by pet type, $ billions. Grey dot = 2022 (recalculated), blue dot = 2025.",
+      "The 35% for all pets is the change AMA reports."
+    ]
+  },
+  "width": 700,
+  "height": 320,
+  "data": {
+    "url": "data/pet_spend.csv",
+    "format": {"type": "csv", "parse": {"spend_billion": "number", "year": "string"}}
+  },
+  "transform": [
+    {"pivot": "year", "value": "spend_billion", "groupby": ["pet_type"]},
+    {"calculate": "datum['2022']", "as": "y2022"},
+    {"calculate": "datum['2025']", "as": "y2025"},
+    {
+      "calculate": "datum.pet_type == 'All pets' ? 35 : round((datum.y2025 / datum.y2022 - 1) * 100)",
+      "as": "change_pct"
+    }
+  ],
+  "encoding": {
+    "y": {
+      "field": "pet_type",
+      "type": "nominal",
+      "title": null,
+      "sort": ["All pets", "Dogs", "Cats", "Other pets"],
+      "axis": {"labelFontSize": 14, "labelFontWeight": "bold", "domain": false, "ticks": false}
+    }
+  },
+  "layer": [
+    {
+      "description": "Line joining the 2022 and 2025 dots",
+      "mark": {"type": "rule", "color": "#cbd5e1", "strokeWidth": 4},
+      "encoding": {
+        "x": {
+          "field": "y2022",
+          "type": "quantitative",
+          "title": "Spending ($ billions)",
+          "scale": {"domain": [-3, 28], "nice": false, "zero": false},
+          "axis": {"values": [0, 5, 10, 15, 20, 25], "grid": true}
+        },
+        "x2": {"field": "y2025"}
+      }
+    },
+    {
+      "description": "2022 dot (grey)",
+      "mark": {"type": "point", "filled": true, "size": 200, "opacity": 1, "color": "#94a3b8"},
+      "encoding": {
+        "x": {
+          "field": "y2022",
+          "type": "quantitative",
+          "scale": {"domain": [-3, 28], "nice": false, "zero": false}
+        }
+      }
+    },
+    {
+      "description": "2025 dot (blue) with tooltip",
+      "mark": {"type": "point", "filled": true, "size": 200, "opacity": 1, "color": "#0072b2"},
+      "encoding": {
+        "x": {
+          "field": "y2025",
+          "type": "quantitative",
+          "scale": {"domain": [-3, 28], "nice": false, "zero": false}
+        },
+        "tooltip": [
+          {"field": "pet_type", "title": "Pet"},
+          {"field": "y2022", "format": ".2f", "title": "2022 ($B)"},
+          {"field": "y2025", "format": ".2f", "title": "2025 ($B)"},
+          {"field": "change_pct", "title": "Change (%)"}
+        ]
+      }
+    },
+    {
+      "description": "2022 value label (left of grey dot)",
+      "transform": [{"calculate": "format(datum.y2022, '$.1f') + 'B'", "as": "label"}],
+      "mark": {"type": "text", "align": "right", "dx": -12, "fontSize": 13, "color": "#64748b"},
+      "encoding": {
+        "x": {
+          "field": "y2022",
+          "type": "quantitative",
+          "scale": {"domain": [-3, 28], "nice": false, "zero": false}
+        },
+        "text": {"field": "label"}
+      }
+    },
+    {
+      "description": "2025 value and % change label (right of blue dot)",
+      "transform": [{"calculate": "format(datum.y2025, '$.1f') + 'B   +' + datum.change_pct + '%'", "as": "label"}],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 12,
+        "fontSize": 13,
+        "fontWeight": "bold",
+        "color": "#1f2937"
+      },
+      "encoding": {
+        "x": {
+          "field": "y2025",
+          "type": "quantitative",
+          "scale": {"domain": [-3, 28], "nice": false, "zero": false}
+        },
+        "text": {"field": "label"}
+      }
+    },
+    {
+      "description": "Annotation explaining how the 2022 'Other pets' value was derived",
+      "data": {"values": [{"pet_type": "Other pets", "x": 10, "note": "2022 amount = total minus dogs and cats"}]},
+      "mark": {"type": "text", "align": "left", "fontSize": 13, "fontStyle": "italic", "color": "#475569"},
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative", "scale": {"domain": [-3, 28], "nice": false, "zero": false}},
+        "text": {"field": "note"}
+      }
+    }
+  ],
+  "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10},
+  "config": {
+    "view": {"stroke": null},
+    "title": {"fontSize": 18, "subtitleFontSize": 13},
+    "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10},
+    "legend": {"labelFontSize": 13, "titleFontSize": 13}
+  }
+}

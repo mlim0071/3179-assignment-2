@@ -5,22 +5,17 @@
     "text": "Australian Pet Ownership Share",
     "subtitle": "Nearly 73% of households own at least one pet"
   },
-  "data": {
-    "url": "data/pet_ownership_share.csv"
-  },
+  "data": {"url": "data/pet_ownership_share.csv"},
   "layer": [
     {
-      "mark": {"type": "arc", "innerRadius": 70, "outerRadius": 110, "stroke": "#ffffff", "strokeWidth": 2},
+      "mark": {"type": "arc", "innerRadius": 95, "outerRadius": 150, "stroke": "#ffffff", "strokeWidth": 2},
       "encoding": {
         "theta": {"field": "value", "type": "quantitative"},
         "color": {
           "field": "category",
           "type": "nominal",
-          "scale": {
-            "domain": ["Pet Owning Households", "Non-Pet Owning Households"],
-            "range": ["#3182ce", "#e2e8f0"]
-          },
-          "legend": {"title": "Household Status", "orient": "bottom"}
+          "scale": {"domain": ["Pet Owning Households", "Non-Pet Owning Households"], "range": ["#3182ce", "#e2e8f0"]},
+          "legend": {"title": "Household Status", "orient": "bottom", "direction": "vertical", "labelLimit": 400}
         },
         "tooltip": [
           {"field": "category", "type": "nominal", "title": "Group"},
@@ -33,16 +28,20 @@
         "type": "text",
         "align": "center",
         "baseline": "middle",
-        "fontSize": 24,
+        "fontSize": 34,
         "fontWeight": "bold",
         "fill": "#1a365d"
       },
-      "encoding": {
-        "text": {"value": "73%"}
-      }
+      "encoding": {"text": {"value": "73%"}}
     }
   ],
   "config": {
-    "view": {"stroke": null}
-  }
+    "view": {"stroke": null},
+    "title": {"fontSize": 18, "subtitleFontSize": 13},
+    "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10},
+    "legend": {"labelFontSize": 13, "titleFontSize": 13}
+  },
+  "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10},
+  "width": 400,
+  "height": 380
 }

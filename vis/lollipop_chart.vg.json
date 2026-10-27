@@ -5,11 +5,9 @@
     "text": "Household Pet Penetration Rates (%)",
     "subtitle": "Ranked from highest to lowest household ownership"
   },
-  "data": {
-    "url": "data/species_preferences.csv"
-  },
-  "width": 450,
-  "height": 280,
+  "data": {"url": "data/species_preferences.csv"},
+  "width": 600,
+  "height": 320,
   "encoding": {
     "y": {
       "field": "species",
@@ -25,12 +23,7 @@
     }
   },
   "layer": [
-    {
-      "mark": {"type": "rule", "color": "#cbd5e1", "strokeWidth": 2},
-      "encoding": {
-        "x2": {"value": 0}
-      }
-    },
+    {"mark": {"type": "rule", "color": "#cbd5e1", "strokeWidth": 2}, "encoding": {"x2": {"value": 0}}},
     {
       "mark": {"type": "point", "size": 140, "filled": true, "color": "#2b6cb0"},
       "encoding": {
@@ -41,5 +34,11 @@
       }
     }
   ],
-  "config": {"view": {"stroke": null}}
+  "config": {
+    "view": {"stroke": null},
+    "title": {"fontSize": 18, "subtitleFontSize": 13},
+    "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10},
+    "legend": {"labelFontSize": 13, "titleFontSize": 13}
+  },
+  "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10}
 }

@@ -1,0 +1,9 @@
+state,state_code,population_thousands,animals_received,animals_rehomed,pct_rehomed,x,y,radius,area,received_per_100k
+New South Wales,NSW,8593.9,9941,5213,52.4,337.4,217.8,80.0,20106.2,116
+Victoria,VIC,7074.5,5845,3392,58.0,203.4,303.7,72.6,16551.4,83
+Queensland,QLD,5669.8,14420,7914,54.9,229.8,118.7,65.0,13265.0,254
+South Australia,SA,1902.3,5318,3058,57.5,163.3,199.9,37.6,4450.6,280
+Western Australia,WA,3043.7,1895,951,50.2,67.6,183.5,47.6,7121.0,62
+Tasmania,TAS,576.0,1079,708,65.6,287.6,351.4,20.7,1347.6,187
+Northern Territory,NT,264.4,463,305,65.9,148.4,123.7,14.0,618.6,175
+Australian Capital Territory,ACT,484.8,2530,1743,68.9,297.3,310.4,19.0,1134.2,522

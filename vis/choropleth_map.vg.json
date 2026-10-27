@@ -3,89 +3,45 @@
   "description": "Choropleth map of the share of households with a pet, by state and territory.",
   "title": {
     "text": "Share of Households with a pet by state",
-    "subtitle": "Darker blue represents a higher share of households owning a pet",
-    "anchor": "start",
-    "fontSize": 16,
-    "subtitleFontSize": 12
+    "subtitle": "Darker blue represents a higher share of households owning a pet"
   },
-  "width": 620,
-  "height": 480,
-  "projection": {
-    "type": "mercator"
-  },
-  "data": {
-    "url": "data/australia_states.geojson",
-    "format": {
-      "type": "json",
-      "property": "features"
-    }
-  },
+  "width": 720,
+  "height": 520,
+  "projection": {"type": "mercator"},
+  "data": {"url": "data/australia_states.geojson", "format": {"type": "json", "property": "features"}},
   "transform": [
     {
       "lookup": "properties.STATE_NAME",
       "from": {
-        "data": {
-          "url": "data/australia_states_pets.csv"
-        },
+        "data": {"url": "data/australia_states_pets.csv"},
         "key": "state",
-        "fields": [
-          "state_code",
-          "pet_density_pct",
-          "total_pets_thousands",
-          "label_lon",
-          "label_lat"
-        ]
+        "fields": ["state_code", "pet_density_pct", "total_pets_thousands", "label_lon", "label_lat"]
       }
     },
+    {"calculate": "datum.state_code + ' ' + format(datum.pet_density_pct, '.1f') + '%'", "as": "label"},
     {
-      "calculate": "datum.state_code + ' ' + format(datum.pet_density_pct, '.1f') + '%'",
-      "as": "label"
+      "calculate": "datum.state_code == 'ACT' ? toNumber(datum.label_lon) + 2.4 : toNumber(datum.label_lon)",
+      "as": "label_x"
     }
   ],
   "layer": [
     {
-      "mark": {
-        "type": "geoshape",
-        "stroke": "#ffffff",
-        "strokeWidth": 0.5
-      },
+      "mark": {"type": "geoshape", "stroke": "#ffffff", "strokeWidth": 0.5},
       "encoding": {
         "color": {
           "field": "pet_density_pct",
           "type": "quantitative",
-          "scale": {
-            "scheme": "blues",
-            "domain": [
-              66,
-              78
-            ]
-          },
+          "scale": {"scheme": "blues", "domain": [66, 78]},
           "legend": {
-            "title": [
-              "Households",
-              "with a pet (%)"
-            ],
+            "title": ["Households", "with a pet (%)"],
             "orient": "right",
-            "gradientLength": 160,
-            "values": [
-              66,
-              70,
-              74,
-              78
-            ]
+            "gradientLength": 220,
+            "values": [66, 70, 74, 78]
           }
         },
         "tooltip": [
-          {
-            "field": "properties.STATE_NAME",
-            "type": "nominal",
-            "title": "State/Territory"
-          },
-          {
-            "field": "pet_density_pct",
-            "type": "quantitative",
-            "title": "Households with a pet (%)"
-          },
+          {"field": "properties.STATE_NAME", "type": "nominal", "title": "State/Territory"},
+          {"field": "pet_density_pct", "type": "quantitative", "title": "Households with a pet (%)"},
           {
             "field": "total_pets_thousands",
             "type": "quantitative",
@@ -96,71 +52,33 @@
       }
     },
     {
-      "data": {
-        "values": [
-          {
-            "lon": 149.13,
-            "lat": -35.28,
-            "lon2": 154.2,
-            "lat2": -36.0
-          }
-        ]
-      },
-      "mark": {
-        "type": "rule",
-        "stroke": "#475569",
-        "strokeWidth": 1
-      },
+      "data": {"values": [{"lon": 149.13, "lat": -35.28, "lon2": 152.8, "lat2": -36.0}]},
+      "mark": {"type": "rule", "stroke": "#475569", "strokeWidth": 1},
       "encoding": {
-        "longitude": {
-          "field": "lon",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "lat",
-          "type": "quantitative"
-        },
-        "longitude2": {
-          "field": "lon2"
-        },
-        "latitude2": {
-          "field": "lat2"
-        }
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "longitude2": {"field": "lon2"},
+        "latitude2": {"field": "lat2"}
       }
     },
     {
-      "mark": {
-        "type": "text",
-        "fontSize": 11,
-        "fontWeight": "bold",
-        "baseline": "middle"
-      },
+      "mark": {"type": "text", "fontSize": 13, "fontWeight": "bold", "baseline": "middle"},
       "encoding": {
-        "longitude": {
-          "field": "label_lon",
-          "type": "quantitative"
-        },
-        "latitude": {
-          "field": "label_lat",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "label",
-          "type": "nominal"
-        },
+        "longitude": {"field": "label_x", "type": "quantitative"},
+        "latitude": {"field": "label_lat", "type": "quantitative"},
+        "text": {"field": "label", "type": "nominal"},
         "color": {
-          "condition": {
-            "test": "datum.pet_density_pct > 73 && datum.state_code !== 'TAS'",
-            "value": "#ffffff"
-          },
+          "condition": {"test": "datum.pet_density_pct > 73 && datum.state_code !== 'TAS'", "value": "#ffffff"},
           "value": "#1e293b"
         }
       }
     }
   ],
   "config": {
-    "view": {
-      "stroke": null
-    }
-  }
+    "view": {"stroke": null},
+    "title": {"fontSize": 18, "subtitleFontSize": 13},
+    "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10},
+    "legend": {"labelFontSize": 13, "titleFontSize": 13}
+  },
+  "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10}
 }

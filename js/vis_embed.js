@@ -6,8 +6,8 @@ vegaEmbed("#donut_chart", spec_donut).catch(console.error);
 var spec_line = "vis/line_chart.vg.json";
 vegaEmbed("#line_chart", spec_line).catch(console.error);
 
-var spec_area = "vis/stacked_area_chart.vg.json";
-vegaEmbed("#area_chart", spec_area).catch(console.error);
+var spec_dumbell = "vis/dumbell_chart.vg.json";          
+vegaEmbed("#dumbell_chart", spec_dumbell).catch(console.error);
 
 // Section 3: Household Preferences Charts
 var spec_lollipop = "vis/lollipop_chart.vg.json";
@@ -23,14 +23,14 @@ vegaEmbed("#vertical_bar", spec_hbar).catch(console.error);
 var spec_map1 = "vis/choropleth_map.vg.json";
 vegaEmbed("#map1", spec_map1).catch(console.error);
 
-//var spec_map2 = "vis/symbol_map.vg.json";
-//vegaEmbed("#map2", spec_map2).catch(console.error);
+var spec_map2 = "vis/symbol_map.vg.json";
+vegaEmbed("#map2", spec_map2).catch(console.error);
 
-//var spec_map3 = "vis/bubble_map.vg.json";
-//vegaEmbed("#map3", spec_map3).catch(console.error);
+var spec_map3 = "vis/dorling_map.vg.json";
+vegaEmbed("#map3", spec_map3).catch(console.error);
 
-//var spec_heatmap = "vis/demographic_heatmap.vg.json";
-//vegaEmbed("#demographic_heatmap", spec_heatmap).catch(console.error);
+var spec_heatmap = "vis/heatmap_owner.vg.json";
+vegaEmbed("#heatmap_owner", spec_heatmap).catch(console.error);
 
  //Section 5: Conclusion Chart
 var spec_conclusion = "vis/conclusion_chart.vg.json";

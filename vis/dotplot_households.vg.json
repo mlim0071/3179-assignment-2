@@ -5,15 +5,14 @@
     "text": "Australian Households Owning Pets",
     "subtitle": "Ranked by total owning households (millions)"
   },
-  "data": {
-    "url": "data/species_preferences.csv"
-  },
-  "width": 450,
-  "height": 260,
+  "data": {"url": "data/species_preferences.csv"},
+  "width": 600,
+  "height": 300,
   "transform": [
+    {"calculate": "datum.owning_households_thousands / 1000", "as": "households_millions"},
     {
-      "calculate": "datum.owning_households_thousands / 1000",
-      "as": "households_millions"
+      "calculate": "format(datum.households_millions, '.2f') + 'M (' + datum.penetration_rate + '%)'",
+      "as": "label"
     }
   ],
   "encoding": {
@@ -28,21 +27,13 @@
       "field": "households_millions",
       "type": "quantitative",
       "title": "Owning Households (Millions)",
-      "scale": {"domain": [0, 6]},
-      "axis": {
-        "format": ".1f",
-        "labelExpr": "datum.value + 'M'"
-      }
+      "scale": {"domain": [0, 7]},
+      "axis": {"format": ".1f", "labelExpr": "datum.value + 'M'"}
     }
   },
   "layer": [
     {
-      "mark": {
-        "type": "point",
-        "filled": true,
-        "size": 140,
-        "opacity": 0.95
-      },
+      "mark": {"type": "point", "filled": true, "size": 140, "opacity": 0.95},
       "encoding": {
         "color": {
           "field": "group",
@@ -56,7 +47,12 @@
         "tooltip": [
           {"field": "species", "type": "nominal", "title": "Species"},
           {"field": "group", "type": "nominal", "title": "Animal Class"},
-          {"field": "households_millions", "type": "quantitative", "title": "Owning Households (M)", "format": ".2f"},
+          {
+            "field": "households_millions",
+            "type": "quantitative",
+            "title": "Owning Households (M)",
+            "format": ".2f"
+          },
           {"field": "penetration_rate", "type": "quantitative", "title": "Household Penetration (%)"}
         ]
       }
@@ -67,18 +63,17 @@
         "align": "left",
         "baseline": "middle",
         "dx": 10,
-        "fontSize": 11,
+        "fontSize": 13,
         "fontWeight": "bold"
       },
-      "encoding": {
-        "text": {
-          "signal": "format(datum.households_millions, '.2f') + 'M (' + datum.penetration_rate + '%)'"
-        },
-        "color": {"value": "#334155"}
-      }
+      "encoding": {"text": {"field": "label", "type": "nominal"}, "color": {"value": "#334155"}}
     }
   ],
   "config": {
-    "view": {"stroke": null}
-  }
+    "view": {"stroke": null},
+    "title": {"fontSize": 18, "subtitleFontSize": 13},
+    "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10},
+    "legend": {"labelFontSize": 13, "titleFontSize": 13}
+  },
+  "padding": {"top": 20, "bottom": 40, "left": 10, "right": 10}
 }

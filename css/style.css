@@ -20,7 +20,7 @@ body {
 }
 
 #page-container {
-  max-width: 900px;
+  max-width: 900px;            /* was 900px: gives the larger charts room */
   margin: 40px auto;
   padding: 0 20px;
 }
@@ -56,7 +56,7 @@ section {
   border-radius: 12px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   margin-bottom: 40px;
-  padding: 35px;
+  padding: 25px;
   border: 1px solid var(--border-color);
 }
 
@@ -80,7 +80,7 @@ section > p {
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin: 20px auto;
+    margin: 20px auto 0;        /* was 20px auto: removes the gap below the chart */
     width: 100%;
 }
 
@@ -90,7 +90,7 @@ section > p {
   background: #f1f5f9;
   border-left: 4px solid var(--accent-blue);
   padding: 14px 18px;
-  margin-top: 15px;
+  margin-top: 8px;              /* was 15px */
   font-size: 0.95rem;
   color: #334155;
   border-radius: 0 6px 6px 0;

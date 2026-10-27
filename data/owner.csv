@@ -1,0 +1,19 @@
+characteristic,pet_group,non_owners_pct,owners_pct
+Owns or is paying off a home,Any pet,63.3,71.0
+Owns or is paying off a home,Dogs,64.1,72.8
+Owns or is paying off a home,Cats,68.2,67.1
+Renting or rent-free,Any pet,36.7,29.0
+Renting or rent-free,Dogs,35.9,27.2
+Renting or rent-free,Cats,31.8,32.9
+Not in a couple,Any pet,41.1,32.9
+Not in a couple,Dogs,39.6,31.8
+Not in a couple,Cats,36.2,36.0
+De facto couple,Any pet,13.3,18.6
+De facto couple,Dogs,14.7,18.8
+De facto couple,Cats,15.7,19.3
+Legally married,Any pet,45.6,48.5
+Legally married,Dogs,45.6,49.5
+Legally married,Cats,48.1,44.7
+Female,Any pet,50.6,54.7
+Female,Dogs,52.2,54.2
+Female,Cats,51.9,57.0

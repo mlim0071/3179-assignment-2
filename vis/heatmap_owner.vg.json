@@ -1,0 +1,98 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Diverging heatmap: percentage-point gap between pet owners and non-owners. Source: Taniguchi, Ikeuchi and Yong (2024), PLOS ONE, Table 1 (HILDA 2018), PMC11324118. Gaps are calculated.",
+  "title": {
+    "text": "Dog Owners Are Far More Likely to Own Their Home, but Cat Owners Barely Differ",
+    "subtitle": [
+      "Gap between owners and non-owners, in percentage points (owners minus non-owners).",
+      "Blue = more common among owners, orange = less common. Australians aged 15+, HILDA 2018."
+    ]
+  },
+  "width": 420,
+  "height": 340,
+  "data": {
+    "url": "data/owner.csv",
+    "format": {"type": "csv", "parse": {"non_owners_pct": "number", "owners_pct": "number"}}
+  },
+  "transform": [{"calculate": "round((datum.owners_pct - datum.non_owners_pct) * 10) / 10", "as": "gap"}],
+  "encoding": {
+    "x": {
+      "field": "pet_group",
+      "type": "ordinal",
+      "title": null,
+      "sort": ["Any pet", "Dogs", "Cats"],
+      "axis": {"orient": "top", "labelAngle": 0, "labelFontSize": 13, "ticks": false, "domain": false}
+    },
+    "y": {
+      "field": "characteristic",
+      "type": "ordinal",
+      "title": null,
+      "sort": [
+        "Owns or is paying off a home",
+        "Renting or rent-free",
+        "Not in a couple",
+        "De facto couple",
+        "Legally married",
+        "Female"
+      ],
+      "axis": {"labelFontSize": 13, "labelLimit": 260, "ticks": false, "domain": false}
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "rect", "stroke": "#ffffff", "strokeWidth": 2},
+      "encoding": {
+        "color": {
+          "field": "gap",
+          "type": "quantitative",
+          "title": "Gap (points)",
+          "scale": {"domain": [-10, 10], "range": ["#d55e00", "#f7f7f7", "#0072b2"], "clamp": true},
+          "legend": {"gradientLength": 200, "format": "+d"}
+        },
+        "tooltip": [
+          {"field": "characteristic", "title": "Characteristic"},
+          {"field": "pet_group", "title": "Pet group"},
+          {"field": "owners_pct", "title": "Owners (%)", "format": ".1f"},
+          {"field": "non_owners_pct", "title": "Non-owners (%)", "format": ".1f"},
+          {"field": "gap", "title": "Gap (points)", "format": "+.1f"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "fontSize": 14, "fontWeight": "bold"},
+      "encoding": {
+        "text": {"field": "gap", "format": "+.1f"},
+        "color": {"condition": {"test": "abs(datum.gap) >= 6", "value": "#ffffff"}, "value": "#1f2937"}
+      }
+    },
+    {
+      "transform": [{"filter": "datum.pet_group == 'Dogs' && datum.characteristic == 'Owns or is paying off a home'"}],
+      "mark": {"type": "rect", "fill": null, "stroke": "#1f2937", "strokeWidth": 3}
+    },
+    {
+      "data": {"values": [{"x": 0}]},
+      "transform": [
+        {
+          "calculate": "['Dog owners: 72.8% own their home,', 'against 64.1% of people without a dog']",
+          "as": "note"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "color": "#475569",
+        "lineBreak": "\n"
+      },
+      "encoding": {"x": {"value": 0}, "y": {"value": 375}, "text": {"field": "note"}}
+    }
+  ],
+  "padding": {"top": 20, "bottom": 10, "left": 10, "right": 10},
+  "config": {
+    "view": {"stroke": null},
+    "title": {"fontSize": 18, "subtitleFontSize": 13},
+    "axis": {"labelFontSize": 13, "titleFontSize": 14, "titlePadding": 10},
+    "legend": {"labelFontSize": 13, "titleFontSize": 13}
+  }
+}
